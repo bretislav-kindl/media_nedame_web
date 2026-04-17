@@ -123,8 +123,11 @@
       submitBtn.textContent = 'Odesílám…';
     }
 
-    // TODO: Replace with actual form submission endpoint
-    // e.g. Netlify Forms, Formspree, or custom API
+    // TODO: Wire up to a real form submission endpoint before launching.
+    // This template currently simulates submission without persisting any data.
+    // Recommended options: Netlify Forms (add data-netlify="true" to the form),
+    // Formspree (https://formspree.io), or a custom API endpoint.
+    // Until connected, NO petition signatures will be saved.
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if (successMsg) {
