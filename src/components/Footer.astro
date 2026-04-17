@@ -1,0 +1,214 @@
+---
+// Footer component
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Média nedáme – domů">
+          <span aria-hidden="true">📰</span>
+          <span>Média<strong>nedáme</strong></span>
+        </a>
+        <p class="footer-tagline">
+          Stojíme za svobodou a nezávislostí českých médií.
+        </p>
+        <div class="footer-social" aria-label="Sociální sítě">
+          <a
+            href="https://twitter.com/"
+            class="social-link"
+            aria-label="Twitter/X"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            𝕏
+          </a>
+          <a
+            href="https://facebook.com/"
+            class="social-link"
+            aria-label="Facebook"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            f
+          </a>
+          <a
+            href="https://instagram.com/"
+            class="social-link"
+            aria-label="Instagram"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            IG
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h3 class="footer-nav-title">Iniciativa</h3>
+        <ul>
+          <li><a href="#o-iniciative">O iniciativě</a></li>
+          <li><a href="#proc">Proč?</a></li>
+          <li><a href="#co-delame">Co děláme</a></li>
+          <li><a href="#signatari">Signatáři</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h3 class="footer-nav-title">Zapojit se</h3>
+        <ul>
+          <li><a href="#podpis">Podepsat výzvu</a></li>
+          <li><a href="#sdileni">Sdílet</a></li>
+          <li><a href="#podpora">Podpořit média</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h3 class="footer-nav-title">Informace</h3>
+        <ul>
+          <li><a href="/gdpr">Ochrana osobních údajů</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/tiskova-zprava">Tisková zpráva</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {new Date().getFullYear()} Média nedáme. Všechna práva vyhrazena.
+      </p>
+      <p class="footer-disclaimer">
+        Iniciativa je nezávislá a nepolitická. Nereprezentuje žádnou politickou stranu.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-bg-dark);
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo strong {
+    color: var(--color-primary);
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background 0.15s;
+  }
+
+  .social-link:hover {
+    background: var(--color-primary);
+  }
+
+  .footer-nav-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.15s;
+  }
+
+  .footer-nav a:hover {
+    color: #fff;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .footer-disclaimer {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: right;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-disclaimer {
+      text-align: left;
+    }
+  }
+</style>

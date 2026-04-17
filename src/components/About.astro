@@ -1,0 +1,159 @@
+---
+// About section component
+---
+
+<section id="o-iniciative" class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">O iniciativě</p>
+        <h2 class="section-title">Proč vznikla iniciativa Média nedáme?</h2>
+        <div class="about-body">
+          <p>
+            Česká média čelí bezprecedentním tlakům – politickým, ekonomickým i dezinformačním.
+            Novináři jsou zastrašováni, redakce bojují o přežití a veřejnoprávní média jsou pod
+            neustálým politickým nátlakem.
+          </p>
+          <p>
+            Iniciativa <strong>Média nedáme</strong> vznikla jako reakce tisíců občanů,
+            novinářů, kulturních osobností a organizací, kteří odmítají připustit, aby svobodný
+            tisk v České republice zanikl nebo byl podřízen politické moci.
+          </p>
+          <p>
+            Stojíme za právem veřejnosti na pravdivé, nezávislé a různorodé zpravodajství.
+            Věříme, že svobodná média jsou nenahraditelným pilířem fungující demokracie.
+          </p>
+        </div>
+        <a href="#podpis" class="btn btn-primary">Přidejte se k nám</a>
+      </div>
+      <div class="about-visual" aria-hidden="true">
+        <div class="quote-card">
+          <p class="quote-text">
+            „Svoboda tisku je základem každé demokracie. Bez ní nemůže fungovat
+            kontrola moci ani informované rozhodování občanů."
+          </p>
+          <footer class="quote-author">— Zakladatelé iniciativy</footer>
+        </div>
+        <div class="values-list">
+          <div class="value-item">
+            <span class="value-icon" aria-hidden="true">🔍</span>
+            <div>
+              <strong>Nezávislost</strong>
+              <p>Média nesmí sloužit politickým ani ekonomickým zájmům.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon" aria-hidden="true">🛡️</span>
+            <div>
+              <strong>Ochrana</strong>
+              <p>Novináři mají právo pracovat bez strachu ze zastrašování.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon" aria-hidden="true">📣</span>
+            <div>
+              <strong>Různorodost</strong>
+              <p>Pluralita médií zaručuje různé pohledy na svět.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-bg-alt);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+  }
+
+  .about-body strong {
+    color: var(--color-primary);
+  }
+
+  .quote-card {
+    background: var(--color-secondary);
+    color: #fff;
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .quote-card::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.5rem;
+    left: 1.5rem;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    opacity: 0.5;
+  }
+
+  .quote-text {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+  }
+
+  .quote-author {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .values-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .value-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .value-item strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.2rem;
+  }
+
+  .value-item p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+</style>

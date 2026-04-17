@@ -1,0 +1,176 @@
+---
+// FAQ section component
+
+const faqs = [
+  {
+    question: 'Kdo stojí za iniciativou Média nedáme?',
+    answer:
+      'Iniciativa vznikla spontánně z vůle novinářů, kulturních osobností, akademiků a občanů, kteří se shodují na tom, že svobodná média jsou nenahraditelná. Iniciativa nemá politické napojení na žádnou stranu.',
+  },
+  {
+    question: 'Co se stane s mým podpisem?',
+    answer:
+      'Podpisy budou předány relevantním institucím – parlamentu, vládě, Radě pro rozhlasové a televizní vysílání a dalším regulátorům. Zároveň budou využity jako vyjádření veřejného zájmu při medializaci tématu.',
+  },
+  {
+    question: 'Mohu podepsat, i když nejsem novinář?',
+    answer:
+      'Samozřejmě! Svobodná média se týkají nás všech. Iniciativa je otevřena každému občanovi, který sdílí přesvědčení o důležitosti nezávislého tisku pro demokracii.',
+  },
+  {
+    question: 'Jak mohu pomoci kromě podpisu?',
+    answer:
+      'Sdílejte iniciativu ve svém okolí a na sociálních sítích. Předplaťte si seriózní média, darujte investigativním redakcím, účastněte se veřejných diskuzí o médiích.',
+  },
+  {
+    question: 'Jak zpracováváte moje osobní údaje?',
+    answer:
+      'Vaše osobní údaje zpracováváme výhradně pro účely iniciativy, v souladu s nařízením GDPR. Bez vašeho souhlasu nebudou sdíleny se třetími stranami. Podrobnosti najdete v naší politice zpracování osobních údajů.',
+  },
+  {
+    question: 'Mohu svůj podpis odvolat?',
+    answer:
+      'Ano, kdykoli nás můžete kontaktovat na e-mail iniciativy a požádat o odstranění svého jména ze seznamu signatářů.',
+  },
+];
+---
+
+<section id="faq" class="faq">
+  <div class="container">
+    <header class="faq-header">
+      <p class="section-label">Časté dotazy</p>
+      <h2 class="section-title">Máte otázky?</h2>
+      <p class="section-subtitle">Odpovídáme na nejčastěji kladené otázky o iniciativě.</p>
+    </header>
+    <dl class="faq-list">
+      {
+        faqs.map((faq, index) => (
+          <div class="faq-item">
+            <dt>
+              <button
+                class="faq-question"
+                aria-expanded="false"
+                aria-controls={`faq-answer-${index}`}
+              >
+                <span>{faq.question}</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+            </dt>
+            <dd class="faq-answer" id={`faq-answer-${index}`} hidden>
+              <p>{faq.answer}</p>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<script>
+  const faqButtons = document.querySelectorAll<HTMLButtonElement>('.faq-question');
+
+  faqButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answerId = btn.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+
+      // Close all other items
+      faqButtons.forEach((other) => {
+        if (other !== btn) {
+          other.setAttribute('aria-expanded', 'false');
+          const otherId = other.getAttribute('aria-controls');
+          const otherAnswer = otherId ? document.getElementById(otherId) : null;
+          if (otherAnswer) otherAnswer.hidden = true;
+          const otherIcon = other.querySelector('.faq-icon');
+          if (otherIcon) otherIcon.textContent = '+';
+        }
+      });
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+      const icon = btn.querySelector('.faq-icon');
+      if (icon) icon.textContent = expanded ? '+' : '–';
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    background: var(--color-bg);
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .faq-header .section-subtitle {
+    margin-inline: auto;
+  }
+
+  .faq-list {
+    max-width: 760px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    transition: background 0.15s;
+  }
+
+  .faq-question:hover {
+    background: var(--color-bg-alt);
+  }
+
+  .faq-question[aria-expanded='true'] {
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+  }
+
+  .faq-icon {
+    font-size: 1.3rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    color: var(--color-primary);
+    width: 1.2em;
+    text-align: center;
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    background: var(--color-bg-alt);
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+  }
+</style>

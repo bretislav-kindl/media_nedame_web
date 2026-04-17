@@ -1,0 +1,171 @@
+---
+// Hero section component
+---
+
+<section class="hero" aria-label="Úvodní sekce">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-label">Česká iniciativa za svobodná média</p>
+      <h1 class="hero-title">Média&nbsp;<span class="highlight">nedáme</span></h1>
+      <p class="hero-subtitle">
+        Svobodná a nezávislá média jsou základem demokracie. Stojíme za jejich ochranou
+        a odmítáme politické tlaky, ekonomické vydírání i dezinformace.
+      </p>
+      <div class="hero-actions">
+        <a href="#podpis" class="btn btn-primary">Přidejte svůj podpis</a>
+        <a href="#o-iniciative" class="btn btn-outline-white">Zjistit více</a>
+      </div>
+      <div class="hero-stats" aria-label="Statistiky iniciativy">
+        <div class="stat">
+          <strong class="stat-number" id="signatures-count">12 458</strong>
+          <span class="stat-label">podpisů</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat">
+          <strong class="stat-number">347</strong>
+          <span class="stat-label">osobností kultury a médií</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat">
+          <strong class="stat-number">28</strong>
+          <span class="stat-label">redakcí a organizací</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding-block: 6rem 5rem;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #0d2240 50%, #1a0a0e 100%);
+    z-index: 0;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(215, 38, 61, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(42, 90, 140, 0.3) 0%, transparent 45%);
+  }
+
+  .hero .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 720px;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.25rem;
+    border-left: 3px solid var(--color-primary);
+    padding-left: 0.75rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .highlight {
+    color: var(--color-primary);
+    position: relative;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 58ch;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+    font-weight: 900;
+    font-family: var(--font-heading);
+    color: #fff;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding-block: 5rem 4rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .hero-stats {
+      gap: 1.5rem;
+    }
+  }
+</style>

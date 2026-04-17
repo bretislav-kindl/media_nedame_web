@@ -1,0 +1,164 @@
+---
+// Navigation component
+---
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo" aria-label="Média nedáme – domů">
+      <span class="logo-icon" aria-hidden="true">📰</span>
+      <span class="logo-text">Média<strong>nedáme</strong></span>
+    </a>
+    <nav aria-label="Hlavní navigace">
+      <ul>
+        <li><a href="#o-iniciative">O iniciativě</a></li>
+        <li><a href="#proc">Proč?</a></li>
+        <li><a href="#co-delame">Co děláme</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a href="#podpis" class="btn btn-primary nav-cta">Podepsat</a>
+    <button class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement | null;
+  const nav = document.querySelector('.site-header nav') as HTMLElement | null;
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    nav?.classList.toggle('open');
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 8px rgba(26, 26, 46, 0.06);
+  }
+
+  .site-header .container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 68px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo-text strong {
+    color: var(--color-primary);
+  }
+
+  nav {
+    flex: 1;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  nav a {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    transition: color 0.15s, background 0.15s;
+  }
+
+  nav a:hover {
+    color: var(--color-secondary);
+    background: var(--color-bg-alt);
+  }
+
+  .nav-cta {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-secondary);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    nav {
+      position: absolute;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem 1.5rem;
+      display: none;
+    }
+
+    nav.open {
+      display: block;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    nav a {
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    nav a:last-child {
+      border-bottom: none;
+    }
+  }
+</style>

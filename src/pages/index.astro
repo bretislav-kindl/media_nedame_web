@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Reasons from '../components/Reasons.astro';
+import Actions from '../components/Actions.astro';
+import Signatories from '../components/Signatories.astro';
+import SignPetition from '../components/SignPetition.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Média nedáme – Stojíme za svobodnými médii"
+  description="Přidejte se k tisícům lidí, kteří stojí za svobodou a nezávislostí českých médií. Podepište výzvu a pomozte chránit demokratické hodnoty."
+>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <About />
+    <Reasons />
+    <Actions />
+    <Signatories />
+    <SignPetition />
+    <FAQ />
+  </main>
+  <Footer />
+</Layout>

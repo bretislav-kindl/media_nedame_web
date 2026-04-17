@@ -1,0 +1,134 @@
+---
+// Why (Reasons) section component
+
+const reasons = [
+  {
+    icon: '🏛️',
+    title: 'Politické tlaky na média',
+    description:
+      'Politici a jejich spojenci se snaží ovlivňovat redakční nezávislost, obsazovat dozorčí rady veřejnoprávních médií a zastrašovat novináře.',
+  },
+  {
+    icon: '💰',
+    title: 'Ekonomická závislost',
+    description:
+      'Mnohá média jsou závislá na politicky propojených inzerentech. Ekonomický tlak se mění v tlak redakční.',
+  },
+  {
+    icon: '🌐',
+    title: 'Dezinformace a propaganda',
+    description:
+      'Dezinformační weby a zahraniční vlivové operace podkopávají důvěru v seriózní žurnalistiku a ohrožují demokratický diskurz.',
+  },
+  {
+    icon: '⚖️',
+    title: 'Legislativní ohrožení',
+    description:
+      'Navrhované změny zákonů mohou ohrozit nezávislost veřejnoprávních médií, ochranu zdrojů a právo na informace.',
+  },
+  {
+    icon: '🔇',
+    title: 'Zastrašování novinářů',
+    description:
+      'Novináři čelí právním výhrůžkám, online obtěžování a fyzickému zastrašování. Jejich ochrana je naší povinností.',
+  },
+  {
+    icon: '📉',
+    title: 'Krize lokální žurnalistiky',
+    description:
+      'Místní a regionální média mizí. Stovky komunit přicházejí o jediný zdroj nezávislých místních informací.',
+  },
+];
+---
+
+<section id="proc" class="reasons">
+  <div class="container">
+    <header class="reasons-header">
+      <p class="section-label">Proč je to důležité</p>
+      <h2 class="section-title">Svobodná média jsou v ohrožení</h2>
+      <p class="section-subtitle">
+        Identifikujeme šest klíčových hrozeb, které dnes ohrožují svobodný tisk v České republice.
+      </p>
+    </header>
+    <ul class="reasons-grid" role="list">
+      {
+        reasons.map((reason) => (
+          <li class="reason-card">
+            <span class="reason-icon" aria-hidden="true">
+              {reason.icon}
+            </span>
+            <h3 class="reason-title">{reason.title}</h3>
+            <p class="reason-desc">{reason.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .reasons {
+    background: var(--color-bg);
+  }
+
+  .reasons-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .reasons-header .section-subtitle {
+    margin-inline: auto;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .reason-card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem 1.75rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .reason-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+  }
+
+  .reason-icon {
+    font-size: 2.25rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .reason-title {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.65rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+  }
+
+  .reason-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .reasons-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .reasons-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
