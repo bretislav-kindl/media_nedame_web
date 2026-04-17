@@ -5,8 +5,8 @@
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo" aria-label="Média nedáme – domů">
-      <span class="logo-icon" aria-hidden="true">📰</span>
-      <span class="logo-text">Média<strong>nedáme</strong></span>
+      <img src="/logo.jpeg" alt="Média nedáme logo" class="logo-img" width="40" height="40" />
+      <span class="logo-text">Média<strong>nedáme!</strong></span>
     </a>
     <nav aria-label="Hlavní navigace">
       <ul>
@@ -16,7 +16,6 @@
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
-    <a href="#podpis" class="btn btn-primary nav-cta">Podepsat</a>
     <button class="nav-toggle" aria-label="Otevřít menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -61,6 +60,13 @@
     font-size: 1.2rem;
     color: var(--color-secondary);
     flex-shrink: 0;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   .logo-icon {

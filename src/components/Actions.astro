@@ -4,26 +4,23 @@
 const actions = [
   {
     number: '01',
-    title: 'Podepište výzvu',
+    title: 'Přijďte na walkout',
     description:
-      'Připojte svůj podpis k výzvě za svobodná média. Každý podpis má váhu a ukazuje politikům, že záleží na tom, co si myslíte.',
-    cta: { label: 'Podepsat výzvu', href: '#podpis' },
+      'Středa 22. dubna v 11:59 – náměstí Jana Palacha. Odejděte z výuky a připojte se k pochodu k ministerstvu kultury na obranu veřejnoprávních médií.',
     accent: 'primary',
   },
   {
     number: '02',
-    title: 'Sdílejte a šiřte dál',
+    title: 'Šiřte dál – je za minutu dvanáct',
     description:
-      'Sdílejte iniciativu na sociálních sítích, pošlete ji přátelům a rodině. Čím více lidí se připojí, tím silnější jsme.',
-    cta: { label: 'Sdílet iniciativu', href: '#sdileni' },
+      'Dejte si to vědět mezi sebou, ve škole, proberte to s pedagogy nebo ve školních radách. Sdílejte iniciativu na sociálních sítích – čím více, tím silnější.',
     accent: 'secondary',
   },
   {
     number: '03',
-    title: 'Podpořte investigativu',
+    title: 'Podpořte veřejnoprávní média',
     description:
-      'Přihlaste se k odběru nezávislých médií, darujte investigativním redakcím, nakupujte předplatné. Svobodná žurnalistika potřebuje vaši podporu.',
-    cta: { label: 'Jak podpořit', href: '#podpora' },
+      'Předplaťte si ČT+, sledujte ČRo, sdílejte jejich obsah. Ukažte, že veřejnoprávní média mají diváky a posluchače, kteří si jich váží.',
     accent: 'accent',
   },
 ];
@@ -33,9 +30,9 @@ const actions = [
   <div class="container">
     <header class="section-header">
       <p class="section-label">Co děláme</p>
-      <h2 class="section-title">Tři kroky, jak pomoci</h2>
+      <h2 class="section-title">Tři kroky, jak se zapojit</h2>
       <p class="section-subtitle">
-        Každý z nás může přispět k ochraně svobodných médií. Tady je jak.
+        Každý z nás může přispět k ochraně veřejnoprávních médií. Tady je jak.
       </p>
     </header>
     <div class="actions-grid">
@@ -47,9 +44,6 @@ const actions = [
             </span>
             <h3 class="action-title">{action.title}</h3>
             <p class="action-desc">{action.description}</p>
-            <a href={action.cta.href} class="action-link">
-              {action.cta.label} →
-            </a>
           </article>
         ))
       }
