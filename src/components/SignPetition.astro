@@ -15,20 +15,20 @@
         </p>
         <ul class="sign-benefits" aria-label="Co podpisem vyjadřujete">
           <li>
-            <span aria-hidden="true">✓</span> Odmítáte politické tlaky na redakce a veřejnoprávní média
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Odmítáte politické tlaky na redakce a veřejnoprávní média
           </li>
           <li>
-            <span aria-hidden="true">✓</span> Podporujete ochranu novinářů před zastrašováním
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Podporujete ochranu novinářů před zastrašováním
           </li>
           <li>
-            <span aria-hidden="true">✓</span> Žádáte transparentní pravidla pro vlastnictví médií
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Žádáte transparentní pravidla pro vlastnictví médií
           </li>
           <li>
-            <span aria-hidden="true">✓</span> Stojíte za zachováním plurality mediálního trhu
+            <i class="fa-solid fa-check" aria-hidden="true"></i> Stojíte za zachováním plurality mediálního trhu
           </li>
         </ul>
         <p class="sign-privacy">
-          🔒 Vaše údaje jsou zpracovávány v souladu s GDPR a nebudou sdíleny se třetími stranami.
+          <i class="fa-solid fa-lock" aria-hidden="true"></i> Vaše údaje jsou zpracovávány v souladu s GDPR a nebudou sdíleny se třetími stranami.
         </p>
       </div>
       <div class="sign-form-wrapper">
@@ -96,7 +96,7 @@
             Podepsat výzvu
           </button>
           <div class="form-success" id="form-success" hidden aria-live="polite">
-            <span aria-hidden="true">🎉</span>
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
             <strong>Děkujeme!</strong> Váš podpis byl úspěšně přijat.
           </div>
         </form>
@@ -175,10 +175,21 @@
     color: var(--color-text-light);
   }
 
-  .sign-benefits li span {
+  .sign-benefits li i {
     color: var(--color-primary);
-    font-weight: 700;
     flex-shrink: 0;
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+  }
+
+  .sign-privacy i {
+    color: var(--color-text-muted);
+    margin-right: 0.25rem;
+  }
+
+  .form-success i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
   }
 
   .sign-privacy {

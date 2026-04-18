@@ -48,7 +48,7 @@ const faqs = [
                 aria-controls={`faq-answer-${index}`}
               >
                 <span>{faq.question}</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <i class="fa-solid fa-plus faq-icon" aria-hidden="true"></i>
               </button>
             </dt>
             <dd class="faq-answer" id={`faq-answer-${index}`} hidden>
@@ -57,6 +57,24 @@ const faqs = [
           </div>
         ))
       }
+      <div class="faq-item faq-item--contact">
+        <dt>
+          <button
+            class="faq-question"
+            aria-expanded="false"
+            aria-controls="faq-answer-contact"
+          >
+            <span>Chcete se obrátit na organizátory?</span>
+            <i class="fa-solid fa-plus faq-icon" aria-hidden="true"></i>
+          </button>
+        </dt>
+        <dd class="faq-answer" id="faq-answer-contact" hidden>
+          <p>
+            Máte-li dotaz, zájem o spolupráci nebo chcete iniciativu podpořit jiným způsobem,
+            napište nám na e-mail:&nbsp;<a href="mailto:medianedame@gmail.com" class="faq-contact-email">medianedame@gmail.com</a>
+          </p>
+        </dd>
+      </div>
     </dl>
   </div>
 </section>
@@ -78,14 +96,25 @@ const faqs = [
           const otherAnswer = otherId ? document.getElementById(otherId) : null;
           if (otherAnswer) otherAnswer.hidden = true;
           const otherIcon = other.querySelector('.faq-icon');
-          if (otherIcon) otherIcon.textContent = '+';
+          if (otherIcon) {
+            otherIcon.classList.remove('fa-minus');
+            otherIcon.classList.add('fa-plus');
+          }
         }
       });
 
       btn.setAttribute('aria-expanded', String(!expanded));
       if (answer) answer.hidden = expanded;
       const icon = btn.querySelector('.faq-icon');
-      if (icon) icon.textContent = expanded ? '+' : '–';
+      if (icon) {
+        if (expanded) {
+          icon.classList.remove('fa-minus');
+          icon.classList.add('fa-plus');
+        } else {
+          icon.classList.remove('fa-plus');
+          icon.classList.add('fa-minus');
+        }
+      }
     });
   });
 </script>
@@ -150,8 +179,7 @@ const faqs = [
   }
 
   .faq-icon {
-    font-size: 1.3rem;
-    font-weight: 300;
+    font-size: 0.85rem;
     flex-shrink: 0;
     color: var(--color-primary);
     width: 1.2em;
@@ -167,5 +195,17 @@ const faqs = [
     font-size: 0.95rem;
     color: var(--color-text-light);
     line-height: 1.7;
+  }
+
+  .faq-contact-email {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.15s;
+  }
+
+  .faq-contact-email:hover {
+    opacity: 0.75;
   }
 </style>

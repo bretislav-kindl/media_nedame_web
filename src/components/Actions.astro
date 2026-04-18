@@ -1,27 +1,39 @@
 ---
 // What we do / Actions section component
 
-const actions = [
+const prague = [
   {
     number: '01',
-    title: 'Přijďte na walkout',
+    title: 'Řekněte to dál',
     description:
-      'Středa 22. dubna v 11:59 – náměstí Jana Palacha. Odejděte z výuky a připojte se k pochodu k ministerstvu kultury na obranu veřejnoprávních médií.',
-    accent: 'primary',
+      'Dejte si to vědět mezi sebou, ve škole, proberte to s pedagogy nebo ve školních radách. Sdílejte iniciativu na sociálních sítích – čím více lidí, tím silnější hlas.',
   },
   {
     number: '02',
-    title: 'Šiřte dál – je za minutu dvanáct',
+    title: 'Přijďte na walkout',
     description:
-      'Dejte si to vědět mezi sebou, ve škole, proberte to s pedagogy nebo ve školních radách. Sdílejte iniciativu na sociálních sítích – čím více, tím silnější.',
-    accent: 'secondary',
+      'Středa 22. dubna v 11:59 – náměstí Jana Palacha. Odejděte z výuky a připojte se k pochodu k ministerstvu kultury na obranu veřejnoprávních médií.',
+  },
+];
+
+const outside = [
+  {
+    number: '01',
+    title: 'Šiřte zprávu ve svém okolí',
+    description:
+      'Mluvte o situaci se spolužáky, přáteli a rodinou. Sdílejte iniciativu na sociálních sítích a pomozte zvýšit povědomí po celé zemi.',
+  },
+  {
+    number: '02',
+    title: 'Zorganizujte akci ve vaší škole',
+    description:
+      'Uspořádejte diskuzi, přednášku nebo symbolický walkout na vaší škole. Podrobné informace a materiály pro organizátory připravujeme – sledujte naše kanály.',
   },
   {
     number: '03',
-    title: 'Podpořte veřejnoprávní média',
+    title: 'Více informací brzy',
     description:
-      'Předplaťte si ČT+, sledujte ČRo, sdílejte jejich obsah. Ukažte, že veřejnoprávní média mají diváky a posluchače, kteří si jich váží.',
-    accent: 'accent',
+      'Připravujeme další způsoby, jak se zapojit mimo Prahu. Zůstaňte v kontaktu – podrobnosti zveřejníme co nejdříve.',
   },
 ];
 ---
@@ -30,23 +42,50 @@ const actions = [
   <div class="container">
     <header class="section-header">
       <p class="section-label">Co děláme</p>
-      <h2 class="section-title">Tři kroky, jak se zapojit</h2>
+      <h2 class="section-title">Jak se zapojit</h2>
       <p class="section-subtitle">
-        Každý z nás může přispět k ochraně veřejnoprávních médií. Tady je jak.
+        Každý z nás může přispět k ochraně veřejnoprávních médií – ať jste kdekoliv.
       </p>
     </header>
-    <div class="actions-grid">
-      {
-        actions.map((action) => (
-          <article class={`action-card action-card--${action.accent}`}>
-            <span class="action-number" aria-hidden="true">
-              {action.number}
-            </span>
-            <h3 class="action-title">{action.title}</h3>
-            <p class="action-desc">{action.description}</p>
-          </article>
-        ))
-      }
+
+    <div class="audience-grid">
+      <div class="audience-block">
+        <div class="audience-label audience-label--prague">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          Jsem v Praze
+        </div>
+        <div class="steps-list">
+          {prague.map((step) => (
+            <div class="step-card step-card--prague">
+              <span class="step-number">{step.number}</span>
+              <div>
+                <h3 class="step-title">{step.title}</h3>
+                <p class="step-desc">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="audience-divider" aria-hidden="true"></div>
+
+      <div class="audience-block">
+        <div class="audience-label audience-label--outside">
+          <i class="fa-solid fa-map" aria-hidden="true"></i>
+          Jsem mimo Prahu
+        </div>
+        <div class="steps-list">
+          {outside.map((step) => (
+            <div class="step-card step-card--outside">
+              <span class="step-number">{step.number}</span>
+              <div>
+                <h3 class="step-title">{step.title}</h3>
+                <p class="step-desc">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -78,79 +117,105 @@ const actions = [
     margin-inline: auto;
   }
 
-  .actions-grid {
+  .audience-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 3rem;
+    align-items: start;
   }
 
-  .action-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    padding: 2.5rem 2rem;
+  .audience-divider {
+    background: rgba(255, 255, 255, 0.12);
+    align-self: stretch;
+  }
+
+  .audience-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.9rem;
+    border-radius: 2rem;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+  }
+
+  .audience-label--prague {
+    background: rgba(215, 38, 61, 0.2);
+    color: #f28090;
+    border: 1px solid rgba(215, 38, 61, 0.35);
+  }
+
+  .audience-label--outside {
+    background: rgba(42, 90, 140, 0.3);
+    color: #7fb3e0;
+    border: 1px solid rgba(42, 90, 140, 0.45);
+  }
+
+  .steps-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    padding: 1.5rem;
     transition: background 0.2s;
   }
 
-  .action-card:hover {
+  .step-card:hover {
     background: rgba(255, 255, 255, 0.08);
   }
 
-  .action-number {
-    font-size: 3rem;
+  .step-number {
+    font-size: 1.75rem;
     font-weight: 900;
     font-family: var(--font-heading);
     line-height: 1;
-    opacity: 0.2;
+    flex-shrink: 0;
   }
 
-  .action-card--primary .action-number {
+  .step-card--prague .step-number {
     color: var(--color-primary);
-    opacity: 1;
   }
 
-  .action-card--secondary .action-number {
+  .step-card--outside .step-number {
     color: var(--color-secondary-light);
-    opacity: 1;
   }
 
-  .action-card--accent .action-number {
-    color: var(--color-accent);
-    opacity: 1;
-  }
-
-  .action-title {
-    font-size: 1.25rem;
+  .step-title {
+    font-size: 1.05rem;
     color: #fff;
     font-family: var(--font-body);
     font-weight: 700;
+    margin-bottom: 0.4rem;
   }
 
-  .action-desc {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
+  .step-desc {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
-    flex: 1;
-  }
-
-  .action-link {
-    display: inline-block;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--color-accent);
-    transition: gap 0.15s;
-  }
-
-  .action-link:hover {
-    text-decoration: underline;
   }
 
   @media (max-width: 900px) {
-    .actions-grid {
+    .audience-grid {
       grid-template-columns: 1fr;
+      gap: 2.5rem 0;
+    }
+
+    .audience-divider {
+      height: 1px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.12);
     }
   }
 </style>

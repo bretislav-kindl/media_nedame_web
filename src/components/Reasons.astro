@@ -3,37 +3,37 @@
 
 const reasons = [
   {
-    icon: '🏛️',
+    icon: 'fa-solid fa-landmark',
     title: 'Politické tlaky na média',
     description:
       'Politici a jejich spojenci se snaží ovlivňovat redakční nezávislost, obsazovat dozorčí rady veřejnoprávních médií a zastrašovat novináře.',
   },
   {
-    icon: '💰',
+    icon: 'fa-solid fa-money-bill-wave',
     title: 'Ekonomická závislost',
     description:
       'Mnohá média jsou závislá na politicky propojených inzerentech. Ekonomický tlak se mění v tlak redakční.',
   },
   {
-    icon: '🌐',
+    icon: 'fa-solid fa-globe',
     title: 'Dezinformace a propaganda',
     description:
       'Dezinformační weby a zahraniční vlivové operace podkopávají důvěru v seriózní žurnalistiku a ohrožují demokratický diskurz.',
   },
   {
-    icon: '⚖️',
+    icon: 'fa-solid fa-scale-balanced',
     title: 'Legislativní ohrožení',
     description:
       'Navrhované změny zákonů mohou ohrozit nezávislost veřejnoprávních médií, ochranu zdrojů a právo na informace.',
   },
   {
-    icon: '🔇',
+    icon: 'fa-solid fa-volume-xmark',
     title: 'Zastrašování novinářů',
     description:
       'Novináři čelí právním výhrůžkám, online obtěžování a fyzickému zastrašování. Jejich ochrana je naší povinností.',
   },
   {
-    icon: '📉',
+    icon: 'fa-solid fa-arrow-trend-down',
     title: 'Krize lokální žurnalistiky',
     description:
       'Místní a regionální média mizí. Stovky komunit přicházejí o jediný zdroj nezávislých místních informací.',
@@ -54,9 +54,7 @@ const reasons = [
       {
         reasons.map((reason) => (
           <li class="reason-card">
-            <span class="reason-icon" aria-hidden="true">
-              {reason.icon}
-            </span>
+            <i class={`reason-icon ${reason.icon}`} aria-hidden="true"></i>
             <h3 class="reason-title">{reason.title}</h3>
             <p class="reason-desc">{reason.description}</p>
           </li>
@@ -101,9 +99,10 @@ const reasons = [
   }
 
   .reason-icon {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     display: block;
     margin-bottom: 1rem;
+    color: var(--color-primary);
   }
 
   .reason-title {

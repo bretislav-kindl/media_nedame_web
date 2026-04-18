@@ -25,38 +25,6 @@
             závažnost této situace. Je za minutu dvanáct.
           </p>
         </div>
-        <a href="#co-delame" class="btn btn-primary">Jak se zapojit</a>
-      </div>
-      <div class="about-visual" aria-hidden="true">
-        <div class="quote-card">
-          <p class="quote-text">
-            „Veřejnoprávní média jsou naším společným majetkem. Politici nám je vzít nesmí."
-          </p>
-          <footer class="quote-author">— Studentská rada FF UK (StRada)</footer>
-        </div>
-        <div class="values-list">
-          <div class="value-item">
-            <span class="value-icon" aria-hidden="true">🔍</span>
-            <div>
-              <strong>Nezávislost</strong>
-              <p>Média nesmí sloužit politickým ani ekonomickým zájmům.</p>
-            </div>
-          </div>
-          <div class="value-item">
-            <span class="value-icon" aria-hidden="true">🛡️</span>
-            <div>
-              <strong>Ochrana</strong>
-              <p>Novináři mají právo pracovat bez strachu ze zastrašování.</p>
-            </div>
-          </div>
-          <div class="value-item">
-            <span class="value-icon" aria-hidden="true">📣</span>
-            <div>
-              <strong>Různorodost</strong>
-              <p>Pluralita médií zaručuje různé pohledy na svět.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -68,10 +36,7 @@
   }
 
   .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+    max-width: 720px;
   }
 
   .about-body {
@@ -86,74 +51,4 @@
     color: var(--color-primary);
   }
 
-  .quote-card {
-    background: var(--color-secondary);
-    color: #fff;
-    padding: 2rem;
-    border-radius: var(--radius);
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-
-  .quote-card::before {
-    content: '\201C';
-    position: absolute;
-    top: -0.5rem;
-    left: 1.5rem;
-    font-size: 6rem;
-    line-height: 1;
-    color: var(--color-primary);
-    font-family: var(--font-heading);
-    opacity: 0.5;
-  }
-
-  .quote-text {
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    padding-top: 1rem;
-  }
-
-  .quote-author {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.65);
-  }
-
-  .values-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .value-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .value-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
-  }
-
-  .value-item strong {
-    display: block;
-    font-size: 1rem;
-    color: var(--color-secondary);
-    margin-bottom: 0.2rem;
-  }
-
-  .value-item p {
-    font-size: 0.9rem;
-    color: var(--color-text-light);
-  }
-
-  @media (max-width: 900px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-  }
 </style>

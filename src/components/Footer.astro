@@ -4,20 +4,13 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="Média nedáme – domů">
-          <img src="/logo.jpeg" alt="Média nedáme logo" width="32" height="32" style="border-radius:50%;object-fit:cover;" />
-          <span>Média<strong>nedáme!</strong></span>
-        </a>
-        <p class="footer-tagline">
-          Studentská iniciativa za ochranu veřejnoprávních médií. StRada FF UK.
-        </p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">
-        &copy; {new Date().getFullYear()} Média nedáme. Všechna práva vyhrazena.
+    <div class="footer-brand">
+      <a href="/" class="footer-logo" aria-label="Média nedáme – domů">
+        <img src="/logo.jpeg" alt="Média nedáme logo" width="32" height="32" style="border-radius:50%;object-fit:cover;" />
+        <span>Média<strong>nedáme!</strong></span>
+      </a>
+      <p class="footer-tagline">
+        Studentská iniciativa za ochranu veřejnoprávních médií. StRada FF UK.
       </p>
       <a
         href="https://www.instagram.com/media.nedame/"
@@ -29,6 +22,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
       </a>
     </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {new Date().getFullYear()} Média nedáme. Všechna práva vyhrazena.
+      </p>
+    </div>
   </div>
 </footer>
 
@@ -36,17 +34,14 @@
   .site-footer {
     background: var(--color-bg-dark);
     color: rgba(255, 255, 255, 0.7);
-    padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
   }
 
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    padding-bottom: 3rem;
+  .footer-brand {
+    padding-bottom: 1.25rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .footer-logo {
