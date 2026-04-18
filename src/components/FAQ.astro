@@ -22,11 +22,7 @@ const faqs = [
     answer:
       'Sdílejte iniciativu ve svém okolí a na sociálních sítích. Proberte téma s pedagogy nebo ve školních radách. Předplaťte si seriózní média a sledujte veřejnoprávní zpravodajství.',
   },
-  {
-    question: 'Proč jdeme zrovna k ministerstvu kultury?',
-    answer:
-      'Ministerstvo kultury má přímou pravomoc nad legislativou týkající se veřejnoprávních médií a jmenováním jejich rad. Proto je to správné místo, kam adresovat naši výzvu.',
-  },
+
 ];
 ---
 
@@ -36,6 +32,7 @@ const faqs = [
       <p class="section-label">Časté dotazy</p>
       <h2 class="section-title">Máte otázky?</h2>
       <p class="section-subtitle">Odpovídáme na nejčastěji kladené otázky o iniciativě.</p>
+      <p class="faq-contact-note">Případně nás můžete kontaktovat přes e-mail: <a href="mailto:medianedame@gmail.com" class="faq-contact-email">medianedame@gmail.com</a></p>
     </header>
     <dl class="faq-list">
       {
@@ -57,24 +54,6 @@ const faqs = [
           </div>
         ))
       }
-      <div class="faq-item faq-item--contact">
-        <dt>
-          <button
-            class="faq-question"
-            aria-expanded="false"
-            aria-controls="faq-answer-contact"
-          >
-            <span>Chcete se obrátit na organizátory?</span>
-            <i class="fa-solid fa-plus faq-icon" aria-hidden="true"></i>
-          </button>
-        </dt>
-        <dd class="faq-answer" id="faq-answer-contact" hidden>
-          <p>
-            Máte-li dotaz, zájem o spolupráci nebo chcete iniciativu podpořit jiným způsobem,
-            napište nám na e-mail:&nbsp;<a href="mailto:medianedame@gmail.com" class="faq-contact-email">medianedame@gmail.com</a>
-          </p>
-        </dd>
-      </div>
     </dl>
   </div>
 </section>
@@ -195,6 +174,12 @@ const faqs = [
     font-size: 0.95rem;
     color: var(--color-text-light);
     line-height: 1.7;
+  }
+
+  .faq-contact-note {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    color: var(--color-text-light);
   }
 
   .faq-contact-email {
