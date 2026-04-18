@@ -4,36 +4,46 @@
 const prague = [
   {
     number: '01',
-    title: 'Řekněte to dál',
-    description:
-      'Dejte si to vědět mezi sebou, ve škole, proberte to s pedagogy nebo ve školních radách. Sdílejte iniciativu na sociálních sítích – čím více lidí, tím silnější hlas.',
+    title: 'Krok 1',
+    description: 'Rozšiřujte ve svém okolí povědomí o problematice Veřejnoprávních médií a sdílejte iniciativu Media nedáme!',
   },
   {
     number: '02',
-    title: 'Přijďte na walkout',
-    description:
-      'Středa 22. dubna v 11:59 – náměstí Jana Palacha. Odejděte z výuky a připojte se k pochodu k ministerstvu kultury na obranu veřejnoprávních médií.',
+    title: 'Krok 2',
+    description: 'Zorganizuj protestní walkout na své škole: ',
+    link: { href: 'https://forms.gle/TDLyhBqtM1CLvETe7', text: 'MÉDIA NEDÁME! CELOREPUBLIKOVÁ VÝZVA STUDENTŮ' },
+  },
+  {
+    number: '03',
+    title: 'Krok 3',
+    description: 'Připoj se k protestnímu shromáždění v 12:20 na náměstí Jana Palacha a následnému protestnímu průvodu k ministersvu kultury',
   },
 ];
 
 const outside = [
   {
     number: '01',
-    title: 'Šiřte zprávu ve svém okolí',
-    description:
-      'Mluvte o situaci se spolužáky, přáteli a rodinou. Sdílejte iniciativu na sociálních sítích a pomozte zvýšit povědomí po celé zemi.',
+    title: 'Krok 1',
+    description: 'Rozšiřujte ve svém okolí povědomí o problematice Veřejnoprávních médií a sdílejte iniciativu Media nedáme!',
   },
   {
     number: '02',
-    title: 'Zorganizujte akci ve vaší škole',
-    description:
-      'Uspořádejte diskuzi, přednášku nebo symbolický walkout na vaší škole. Podrobné informace a materiály pro organizátory připravujeme – sledujte naše kanály.',
+    title: 'Krok 2',
+    description: 'Zorganizuj protestní walkout na své škole: ',
+    link: { href: 'https://forms.gle/TDLyhBqtM1CLvETe7', text: 'MÉDIA NEDÁME! CELOREPUBLIKOVÁ VÝZVA STUDENTŮ' },
   },
   {
     number: '03',
-    title: 'Více informací brzy',
-    description:
-      'Připravujeme další způsoby, jak se zapojit mimo Prahu. Zůstaňte v kontaktu – podrobnosti zveřejníme co nejdříve.',
+    title: 'Krok 3',
+    description: 'Po protestním walkoutu zorganizujte navazující akci. Zde přikládáme pár nápadů:',
+    list: [
+      'shromáždění před školou',
+      'symbolickou stávku',
+      'společné čtení prohlášení',
+      'veřejnou debatu',
+      'hromadné shromáždění škol ve vašem městě',
+      'společným potleskem podpořit zaměstnance ČT a ČRo',
+    ],
   },
 ];
 ---
@@ -42,9 +52,9 @@ const outside = [
   <div class="container">
     <header class="section-header">
       <p class="section-label">Co děláme</p>
-      <h2 class="section-title">Jak se zapojit</h2>
+      <h2 class="section-title">Tři kroky, jak se zapojit</h2>
       <p class="section-subtitle">
-        Každý z nás může přispět k ochraně veřejnoprávních médií – ať jste kdekoliv.
+        Každý z nás může přispět k ochraně veřejnoprávních médií. Tady je jak.
       </p>
     </header>
 
@@ -52,7 +62,7 @@ const outside = [
       <div class="audience-block">
         <div class="audience-label audience-label--prague">
           <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-          Jsem v Praze
+          Chci se zapojit v Praze
         </div>
         <div class="steps-list">
           {prague.map((step) => (
@@ -60,7 +70,10 @@ const outside = [
               <span class="step-number">{step.number}</span>
               <div>
                 <h3 class="step-title">{step.title}</h3>
-                <p class="step-desc">{step.description}</p>
+                <p class="step-desc">
+                  {step.description}
+                  {step.link && <a class="step-link" href={step.link.href} target="_blank" rel="noopener noreferrer">{step.link.text}</a>}
+                </p>
               </div>
             </div>
           ))}
@@ -72,7 +85,7 @@ const outside = [
       <div class="audience-block">
         <div class="audience-label audience-label--outside">
           <i class="fa-solid fa-map" aria-hidden="true"></i>
-          Jsem mimo Prahu
+          Chci se zapojit mimo Prahu
         </div>
         <div class="steps-list">
           {outside.map((step) => (
@@ -80,7 +93,15 @@ const outside = [
               <span class="step-number">{step.number}</span>
               <div>
                 <h3 class="step-title">{step.title}</h3>
-                <p class="step-desc">{step.description}</p>
+                <p class="step-desc">
+                  {step.description}
+                  {step.link && <a class="step-link" href={step.link.href} target="_blank" rel="noopener noreferrer">{step.link.text}</a>}
+                </p>
+                {step.list && (
+                  <ul class="step-list">
+                    {step.list.map((item) => <li>{item}</li>)}
+                  </ul>
+                )}
               </div>
             </div>
           ))}
@@ -204,6 +225,24 @@ const outside = [
     font-size: 0.92rem;
     color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
+  }
+
+  .step-link {
+    color: #7fb3e0;
+    text-decoration: underline;
+    word-break: break-all;
+  }
+
+  .step-link:hover {
+    color: #a8cfee;
+  }
+
+  .step-list {
+    margin-top: 0.5rem;
+    padding-left: 1.2rem;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.8;
   }
 
   @media (max-width: 900px) {

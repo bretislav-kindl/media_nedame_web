@@ -87,11 +87,12 @@
   }
 
   .hero-title {
-    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-size: clamp(2rem, 10vw, 5.5rem);
     font-weight: 900;
     line-height: 1.05;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
+    overflow-wrap: break-word;
   }
 
   .highlight {
@@ -160,6 +161,11 @@
       padding-block: 5rem 4rem;
     }
 
+    .hero-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+    }
+
     .hero-event-banner {
       flex-direction: column;
       gap: 0.75rem;
@@ -172,6 +178,20 @@
     .hero-actions .btn {
       width: 100%;
       text-align: center;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .hero {
+      padding-block: 4.5rem 3rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 11vw, 2.5rem);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
     }
   }
 </style>

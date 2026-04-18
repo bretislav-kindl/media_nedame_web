@@ -7,23 +7,25 @@
     <div class="about-grid">
       <div class="about-text">
         <p class="section-label">O iniciativě</p>
-        <h2 class="section-title">Proč vznikla iniciativa Média nedáme?</h2>
+        <h2 class="section-title">Proč?</h2>
         <div class="about-body">
           <p>
-            Veřejnoprávní média – Česká televize, Český rozhlas a Česká tisková kancelář –
-            čelí bezprecedentnímu politickému tlaku. Vládnoucí garnitura se snaží obsadit
-            jejich rady a ovlivnit jejich nezávislost.
+            Vláda představila návrh zákona o médiích veřejné služby, který velkým způsobem podkopává nezávislost veřejnoprávních médií ČT a ČRo. Návrh zákona plánuje od 1. ledna 2027 zrušit koncesionářské poplatky a přesunout financování České televize a Českého rozhlasu pod státní rozpočet. Zároveň zákon počítá se snížením příjmu obou médií, kdy má Česká televize dostat 5,74 miliardy korun místo letošních 6,73 miliardy, Český rozhlas 2,07 miliardy místo 2,48 miliardy.
           </p>
-          <p>
-            Iniciativa <strong>Média nedáme!</strong> vznikla ze studentského prostředí
-            Filozofické fakulty Univerzity Karlovy. <strong>Studentská rada FF UK (StRada)</strong>
-            vyzývá veškeré studenstvo k protestnímu walkoutu – odchodu z výuky a pochodu
-            k ministerstvu kultury.
-          </p>
-          <p>
-            Jedná se o studentskou iniciativu, ale může se k ní přidat každý, kdo cítí
-            závažnost této situace. Je za minutu dvanáct.
-          </p>
+        </div>
+      </div>
+
+      <div class="impact-visual" aria-label="Vizualizace dopadu návrhu zákona">
+        <div class="impact-box impact-box--question">
+          <i class="fa-solid fa-circle-question impact-icon" aria-hidden="true"></i>
+          <p>Jaký by byl dopad, kdyby tento návrh prošel?</p>
+        </div>
+        <div class="impact-arrow" aria-hidden="true">
+          <i class="fa-solid fa-arrow-down"></i>
+        </div>
+        <div class="impact-box impact-box--answer">
+          <i class="fa-solid fa-triangle-exclamation impact-icon" aria-hidden="true"></i>
+          <p>Výpadek přes miliardu korun pro ČT a 400 milionů pro ČRo, ztrátu nezávislého způsobu financování a tím i svou autonomii.</p>
         </div>
       </div>
     </div>
@@ -49,6 +51,67 @@
 
   .about-body strong {
     color: var(--color-primary);
+  }
+
+  .impact-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    max-width: 560px;
+    margin-top: 0.5rem;
+  }
+
+  .impact-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius);
+    width: 100%;
+  }
+
+  .impact-box p {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+
+  .impact-box--question {
+    background: rgba(42, 90, 140, 0.12);
+    border: 1px solid rgba(42, 90, 140, 0.3);
+    color: var(--color-text);
+  }
+
+  .impact-box--answer {
+    background: rgba(215, 38, 61, 0.08);
+    border: 1px solid rgba(215, 38, 61, 0.3);
+    color: var(--color-text);
+  }
+
+  .impact-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .impact-box--question .impact-icon {
+    color: #7fb3e0;
+  }
+
+  .impact-box--answer .impact-icon {
+    color: var(--color-primary);
+  }
+
+  .impact-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1.65rem;
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    line-height: 1;
+    padding-block: 0.4rem;
   }
 
 </style>
