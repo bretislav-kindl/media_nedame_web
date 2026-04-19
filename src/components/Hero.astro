@@ -12,7 +12,13 @@
         Vyzýváme veškeré studenstvo k protestnímu walkoutu na obranu veřejnoprávních médií.
         Přidejte se – je za minutu dvanáct!
       </p>
-      <div class="hero-event-banner" aria-label="Informace o akci">
+      <a
+        href="https://www.facebook.com/events/s/media-nedame/1349185803730756/?rdid=0GoJbEjAxOx7B6jj&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DM14J5jVX#"
+        class="hero-event-banner"
+        aria-label="Informace o akci – otevřít Facebook událost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div class="event-detail">
           <i class="fa-solid fa-calendar-days event-icon" aria-hidden="true"></i>
           <span>středa <strong>22. dubna</strong> v <strong>11:59</strong></span>
@@ -25,7 +31,7 @@
           <i class="fa-solid fa-person-walking event-icon" aria-hidden="true"></i>
           <span>odchod z výuky · pochod k ministerstvu kultury</span>
         </div>
-      </div>
+      </a>
       <div class="hero-actions">
         <a href="#co-delame" class="btn btn-primary">Jak se zapojit</a>
         <a href="#o-iniciative" class="btn btn-outline-white">Zjistit více</a>
@@ -118,6 +124,14 @@
     border-radius: var(--radius);
     padding: 1rem 1.5rem;
     margin-bottom: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .hero-event-banner:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.35);
   }
 
   .event-detail {
