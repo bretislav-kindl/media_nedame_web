@@ -21,6 +21,12 @@ const {
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" href="/media_nedame_logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600;700&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -44,20 +50,20 @@ const {
   }
 
   :root {
-    --color-primary: #d7263d;
-    --color-primary-dark: #a81c2e;
-    --color-secondary: #1a3a5c;
-    --color-secondary-light: #2a5a8c;
-    --color-accent: #f4a261;
+    --color-primary: #7fff00;
+    --color-primary-dark: #5acc00;
+    --color-secondary: #ff00cc;
+    --color-secondary-light: #ff44dd;
+    --color-accent: #ff00cc;
     --color-bg: #ffffff;
-    --color-bg-alt: #f8f9fa;
-    --color-bg-dark: #1a1a2e;
-    --color-text: #1a1a2e;
-    --color-text-light: #4a4a6a;
-    --color-text-muted: #7a7a9a;
-    --color-border: #e0e0f0;
-    --font-heading: 'Georgia', 'Times New Roman', serif;
-    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --color-bg-alt: #f5f5f5;
+    --color-bg-dark: #111111;
+    --color-text: #111111;
+    --color-text-light: #444444;
+    --color-text-muted: #777777;
+    --color-border: #e0e0e0;
+    --font-heading: 'Barlow Condensed', Impact, sans-serif;
+    --font-body: 'Barlow', system-ui, -apple-system, sans-serif;
     --max-width: 1100px;
     --radius: 8px;
     --shadow: 0 2px 16px rgba(26, 26, 46, 0.1);
@@ -118,7 +124,7 @@ const {
 
   .btn-primary {
     background: var(--color-primary);
-    color: #fff;
+    color: #111111;
   }
 
   .btn-primary:hover {
