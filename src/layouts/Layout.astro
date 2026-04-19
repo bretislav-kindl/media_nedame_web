@@ -5,7 +5,7 @@ interface Props {
 }
 
 const {
-  title = 'Média nedáme',
+  title = 'Media nedame',
   description = 'Stojíme za svobodou a nezávislostí českých médií. Přidejte se k nám.',
 } = Astro.props;
 ---
@@ -41,6 +41,14 @@ const {
 </html>
 
 <style is:global>
+  @font-face {
+    font-family: 'Black Han Sans';
+    src: url('/fonts/BlackHanSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   *,
   *::before,
   *::after {
