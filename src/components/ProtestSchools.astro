@@ -1,0 +1,234 @@
+---
+import XLSX from 'xlsx';
+import { join } from 'path';
+import { statSync } from 'fs';
+
+const filePath = join(process.cwd(), 'public', 'school_protests.xlsx');
+const workbook = XLSX.readFile(filePath);
+const sheet = workbook.Sheets[workbook.SheetNames[0]];
+const lastModified = statSync(filePath).mtime;
+
+interface SchoolRow {
+  'Název školy / univerzity': string;
+  'Město': string;
+  'Odhad účastníků': string;
+}
+
+const rawData = XLSX.utils.sheet_to_json<SchoolRow>(sheet);
+
+// Fisher-Yates shuffle
+const schools = [...rawData];
+for (let i = schools.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [schools[i], schools[j]] = [schools[j], schools[i]];
+}
+
+const countWord = schools.length === 1 ? 'škola' : (schools.length >= 2 && schools.length <= 4) ? 'školy' : 'škol';
+
+const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+});
+---
+
+<section id="protestuji-s-nami" class="protest-schools-section">
+  <div class="container">
+    <header class="protest-schools-header">
+      <p class="section-label">Protestují s námi</p>
+      <h2 class="section-title">Jaká města a školy nás podpořily?</h2>
+      <p class="section-subtitle">
+        Školy, které v rámci iniciativy Média nedáme! pořádají vlastní akce.
+      </p>
+    </header>
+
+    <div class="protest-schools-table-wrap">
+      <table class="protest-schools-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Škola / univerzita</th>
+            <th scope="col">Město</th>
+            <th scope="col">Odhad účastníků</th>
+          </tr>
+        </thead>
+        <tbody>
+          {schools.map((school, index) => (
+            <tr>
+              <td class="col-num">{index + 1}</td>
+              <td class="col-school">{school['Název školy / univerzity']}</td>
+              <td class="col-city">{school['Město']}</td>
+              <td class="col-count">{school['Odhad účastníků']}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="protest-schools-count">
+      Celkem <strong>{schools.length}</strong> {countWord}
+    </p>
+    <p class="protest-schools-updated">Poslední aktualizace: {lastModifiedStr}</p>
+  </div>
+</section>
+
+<style>
+  .protest-schools-section {
+    padding: 5rem 0;
+    background: var(--color-bg);
+  }
+
+  .protest-schools-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .protest-schools-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow);
+  }
+
+  .protest-schools-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .protest-schools-table thead,
+  .protest-schools-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .protest-schools-table tbody {
+    max-height: calc(10 * 46px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .protest-schools-table tbody::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .protest-schools-table tbody::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  .protest-schools-table thead tr,
+  .protest-schools-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  /* Compensate for scrollbar width so thead aligns with tbody */
+  .protest-schools-table thead tr {
+    width: calc(100% - 6px);
+  }
+
+  /* Explicit column widths – must match between th and td */
+  .protest-schools-table th:nth-child(1),
+  .protest-schools-table td:nth-child(1) { width: 3rem; }
+
+  .protest-schools-table th:nth-child(2),
+  .protest-schools-table td:nth-child(2) { width: 55%; }
+
+  .protest-schools-table th:nth-child(3),
+  .protest-schools-table td:nth-child(3) { width: 22%; }
+
+  .protest-schools-table th:nth-child(4),
+  .protest-schools-table td:nth-child(4) { width: 18%; }
+
+  .protest-schools-table thead {
+    background: var(--color-bg-dark);
+    color: #fff;
+  }
+
+  .protest-schools-table thead th {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .protest-schools-table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.12s;
+  }
+
+  .protest-schools-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .protest-schools-table tbody tr:hover {
+    background: var(--color-bg-alt);
+  }
+
+  .protest-schools-table tbody tr:nth-child(even) {
+    background: var(--color-bg-alt);
+  }
+
+  .protest-schools-table tbody tr:nth-child(even):hover {
+    background: #ececec;
+  }
+
+  .protest-schools-table td {
+    padding: 0.75rem 1.1rem;
+    color: var(--color-text);
+    vertical-align: middle;
+  }
+
+  .col-num {
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    text-align: center;
+  }
+
+  .col-school {
+    font-weight: 500;
+  }
+
+  .col-city {
+    color: var(--color-text-light);
+  }
+
+  .col-count {
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .protest-schools-count {
+    margin-top: 1.25rem;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+  }
+
+  .protest-schools-count strong {
+    color: var(--color-text);
+  }
+
+  .protest-schools-updated {
+    margin-top: 0.4rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .protest-schools-table thead th:last-child,
+    .protest-schools-table td.col-count {
+      display: none;
+    }
+  }
+</style>

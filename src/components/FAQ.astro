@@ -32,7 +32,6 @@ const faqs = [
       <p class="section-label">Časté dotazy</p>
       <h2 class="section-title">Máte otázky?</h2>
       <p class="section-subtitle">Odpovídáme na nejčastěji kladené otázky o iniciativě.</p>
-      <p class="faq-contact-note">Případně nás můžete kontaktovat přes e-mail: <a href="mailto:medianedame@gmail.com" class="faq-contact-email">medianedame@gmail.com</a></p>
     </header>
     <dl class="faq-list">
       {
@@ -100,7 +99,20 @@ const faqs = [
 
 <style>
   .faq {
-    background: var(--color-bg);
+    background: var(--color-bg-dark);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .faq-header .section-title {
+    color: #fff;
+  }
+
+  .faq-header .section-label {
+    color: var(--color-primary);
+  }
+
+  .faq-header .section-subtitle {
+    color: rgba(255, 255, 255, 0.65);
   }
 
   .faq-header {
@@ -118,13 +130,13 @@ const faqs = [
     display: flex;
     flex-direction: column;
     gap: 0;
-    border: 1px solid var(--color-border);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius);
     overflow: hidden;
   }
 
   .faq-item {
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .faq-item:last-child {
@@ -144,16 +156,16 @@ const faqs = [
     text-align: left;
     font-size: 0.97rem;
     font-weight: 600;
-    color: var(--color-secondary);
+    color: rgba(255, 255, 255, 0.9);
     transition: background 0.15s;
   }
 
   .faq-question:hover {
-    background: var(--color-bg-alt);
+    background: rgba(255, 255, 255, 0.06);
   }
 
   .faq-question[aria-expanded='true'] {
-    background: var(--color-bg-alt);
+    background: rgba(255, 255, 255, 0.06);
     color: var(--color-primary);
   }
 
@@ -167,12 +179,12 @@ const faqs = [
 
   .faq-answer {
     padding: 0 1.5rem 1.25rem;
-    background: var(--color-bg-alt);
+    background: rgba(255, 255, 255, 0.04);
   }
 
   .faq-answer p {
     font-size: 0.95rem;
-    color: var(--color-text-light);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
   }
 
@@ -192,5 +204,46 @@ const faqs = [
 
   .faq-contact-email:hover {
     opacity: 0.75;
+  }
+
+  .faq-media-contacts {
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-bg-alt);
+    border-left: 3px solid var(--color-primary);
+    border-radius: var(--radius);
+  }
+
+  .faq-media-contacts-title {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .faq-media-contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .faq-media-contact {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--color-text-light);
+  }
+
+  .faq-media-contact strong {
+    color: var(--color-text);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  @media (max-width: 500px) {
+    .faq-media-contacts-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
