@@ -4,3 +4,13 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/media_nedame_logo.png"
+  status = 200
+
+[[redirects]]
+  from = "/apple-touch-icon-precomposed.png"
+  to = "/media_nedame_logo.png"
+  status = 200
