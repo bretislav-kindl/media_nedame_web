@@ -58,9 +58,9 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
           {schools.map((school, index) => (
             <tr>
               <td class="col-num">{index + 1}</td>
-              <td class="col-school">{school['Název školy / univerzity']}</td>
-              <td class="col-city">{school['Město']}</td>
-              <td class="col-count">{school['Odhad účastníků']}</td>
+              <td class="col-school" title={school['Název školy / univerzity']}>{school['Název školy / univerzity']}</td>
+              <td class="col-city" title={school['Město']}>{school['Město']}</td>
+              <td class="col-count" title={school['Odhad účastníků']}>{school['Odhad účastníků']}</td>
             </tr>
           ))}
         </tbody>
@@ -74,7 +74,7 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
   </div>
 </section>
 
-<style>
+<style is:global>
   .protest-schools-section {
     padding: 5rem 0;
     background: var(--color-bg);
@@ -106,7 +106,7 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
 
   .protest-schools-table tbody {
     max-height: calc(10 * 46px);
-    overflow-y: auto;
+    overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: var(--color-border) transparent;
   }
@@ -129,7 +129,7 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
 
   /* Compensate for scrollbar width so thead aligns with tbody */
   .protest-schools-table thead tr {
-    width: calc(100% - 6px);
+    width: 100%;
   }
 
   /* Explicit column widths – must match between th and td */
@@ -151,13 +151,21 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
   }
 
   .protest-schools-table thead th {
-    padding: 0.85rem 1.1rem;
+    padding: 0.85rem 1.75rem;
     text-align: left;
     font-family: var(--font-heading);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     white-space: nowrap;
+  }
+
+  .protest-schools-table thead th:nth-child(1) {
+    text-align: center;
+  }
+
+  .protest-schools-table thead th:nth-child(4) {
+    text-align: right;
   }
 
   .protest-schools-table tbody tr {
@@ -182,7 +190,7 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
   }
 
   .protest-schools-table td {
-    padding: 0.75rem 1.1rem;
+    padding: 0.75rem 1.75rem;
     color: var(--color-text);
     vertical-align: middle;
   }
@@ -195,15 +203,27 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
 
   .col-school {
     font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .col-city {
     color: var(--color-text-light);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .col-count {
     color: var(--color-text-muted);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .protest-schools-table td.col-count {
+    text-align: right;
   }
 
   .protest-schools-count {
@@ -370,9 +390,9 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
       tbody.innerHTML = rows.map((row, i) => `
         <tr>
           <td class="col-num">${i + 1}</td>
-          <td class="col-school">${escapeHtml(row.school)}</td>
-          <td class="col-city">${escapeHtml(row.city)}</td>
-          <td class="col-count">${escapeHtml(row.count)}</td>
+          <td class="col-school" title="${escapeHtml(row.school)}">${escapeHtml(row.school)}</td>
+          <td class="col-city" title="${escapeHtml(row.city)}">${escapeHtml(row.city)}</td>
+          <td class="col-count" title="${escapeHtml(row.count)}">${escapeHtml(row.count)}</td>
         </tr>`).join('');
 
       countEl.innerHTML = `Celkem <strong>${rows.length}</strong> ${countWord(rows.length)}`;
