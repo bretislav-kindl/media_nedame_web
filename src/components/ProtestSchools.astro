@@ -44,7 +44,7 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
       </p>
     </header>
 
-    <div class="protest-schools-table-wrap">
+    <div id="protest-schools-table-wrap" class="protest-schools-table-wrap">
       <table class="protest-schools-table">
         <thead>
           <tr>
@@ -54,7 +54,7 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
             <th scope="col">Odhad účastníků</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="protest-schools-tbody">
           {schools.map((school, index) => (
             <tr>
               <td class="col-num">{index + 1}</td>
@@ -67,10 +67,10 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
       </table>
     </div>
 
-    <p class="protest-schools-count">
+    <p id="protest-schools-count" class="protest-schools-count">
       Celkem <strong>{schools.length}</strong> {countWord}
     </p>
-    <p class="protest-schools-updated">Poslední aktualizace: {lastModifiedStr}</p>
+    <p id="protest-schools-updated" class="protest-schools-updated">Poslední aktualizace: {lastModifiedStr}</p>
   </div>
 </section>
 
@@ -231,4 +231,166 @@ const lastModifiedStr = lastModified.toLocaleDateString('cs-CZ', {
       display: none;
     }
   }
+
+  /* Loading overlay */
+  .protest-schools-table-wrap.is-loading {
+    position: relative;
+    pointer-events: none;
+    min-height: 6rem;
+  }
+
+  .protest-schools-table-wrap.is-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .protest-schools-table-wrap.is-loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: ps-spin 0.7s linear infinite;
+  }
+
+  @keyframes ps-spin {
+    to { transform: rotate(360deg); }
+  }
 </style>
+
+<script>
+  const SHEET_CSV_URL =
+    'https://docs.google.com/spreadsheets/d/1D9MXxAX8WHdqyVgKzwU8YtlUGJexjoPptr3Op_wkXGk/export?format=csv';
+
+  /** Parse a single CSV line respecting double-quoted fields that may contain commas. */
+  function parseCsvLine(line: string): string[] {
+    const fields: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (inQuotes) {
+        if (ch === '"' && line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = false;
+        } else {
+          current += ch;
+        }
+      } else {
+        if (ch === '"') {
+          inQuotes = true;
+        } else if (ch === ',') {
+          fields.push(current);
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+    }
+    fields.push(current);
+    return fields;
+  }
+
+  /** Fisher-Yates in-place shuffle. */
+  function shuffle<T>(arr: T[]): T[] {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function countWord(n: number): string {
+    if (n === 1) return 'škola';
+    if (n >= 2 && n <= 4) return 'školy';
+    return 'škol';
+  }
+
+  function escapeHtml(str: string): string {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  async function loadFromGoogleSheets() {
+    const tableWrap = document.getElementById('protest-schools-table-wrap');
+    const tbody = document.getElementById('protest-schools-tbody');
+    const countEl = document.getElementById('protest-schools-count');
+    const updatedEl = document.getElementById('protest-schools-updated');
+
+    if (!tableWrap || !tbody || !countEl || !updatedEl) return;
+
+    tableWrap.classList.add('is-loading');
+
+    try {
+      const response = await fetch(SHEET_CSV_URL);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const text = await response.text();
+      const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+      if (lines.length < 2) throw new Error('No data rows');
+
+      const headers = parseCsvLine(lines[0]);
+      const colSchool = headers.indexOf('Název školy / univerzity');
+      const colCity = headers.indexOf('Město');
+      const colCount = headers.indexOf('Odhad účastníků');
+
+      if (colSchool === -1 || colCity === -1 || colCount === -1) {
+        throw new Error('Expected columns not found in sheet');
+      }
+
+      interface Row { school: string; city: string; count: string; }
+      const rows: Row[] = lines.slice(1).map(line => {
+        const fields = parseCsvLine(line);
+        return {
+          school: fields[colSchool] ?? '',
+          city: fields[colCity] ?? '',
+          count: fields[colCount] ?? '',
+        };
+      }).filter(row => row.school.trim() !== '' || row.city.trim() !== '' || row.count.trim() !== '');
+
+      shuffle(rows);
+
+      tbody.innerHTML = rows.map((row, i) => `
+        <tr>
+          <td class="col-num">${i + 1}</td>
+          <td class="col-school">${escapeHtml(row.school)}</td>
+          <td class="col-city">${escapeHtml(row.city)}</td>
+          <td class="col-count">${escapeHtml(row.count)}</td>
+        </tr>`).join('');
+
+      countEl.innerHTML = `Celkem <strong>${rows.length}</strong> ${countWord(rows.length)}`;
+
+      const now = new Date().toLocaleDateString('cs-CZ', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+      updatedEl.textContent = `Poslední aktualizace: ${now}`;
+    } catch (_err) {
+      // Silently fall back to the build-time Excel data already in the DOM
+    } finally {
+      tableWrap.classList.remove('is-loading');
+    }
+  }
+
+  loadFromGoogleSheets();
+</script>
