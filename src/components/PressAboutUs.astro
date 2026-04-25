@@ -1,0 +1,356 @@
+---
+// Press About Us section component
+
+const accordionItems = [
+  {
+    title: 'I. Média veřejné služby a veřejnoprávní instituce',
+    agencies: [
+      'Česká televize',
+      'Česká televize (ČT24)',
+      'Český rozhlas',
+      'ČRo Radiožurnál',
+      'ČRo Plus',
+      'ČRo Dvojka',
+      'iROZHLAS.cz',
+      'ČTK — Česká tisková kancelář',
+      'Radio Prague International'
+    ],
+  },
+  {
+    title: 'II. Soukromá celostátní zpravodajská média',
+    agencies: [
+      'Novinky.cz',
+      'Seznam Zprávy',
+      'iDNES.cz',
+      'Aktuálně.cz',
+      'Deník.cz',
+      'Hospodářské noviny',
+      'Lidovky.cz',
+      'Info.cz',
+      'Centrum.cz'
+    ],
+  },
+  {
+    title: 'III. Soukromé komerční vysílání',
+    agencies: [
+      'TV Nova',
+      'TN.cz',
+      'CNN Prima NEWS',
+      'TV Prima',
+      'Televize Seznam'
+    ],
+  },
+  {
+    title: 'IV. Periodický tisk a názorová žurnalistika',
+    agencies: [
+      'Respekt',
+      'Deník N',
+      'Reportér Magazín',
+      'Echo24',
+      'Forum24',
+      'Britské listy'
+    ],
+  },
+  {
+    title: 'V. Digitální publicistika, lifestyle a generačně orientovaná média',
+    agencies: [
+      'Refresher',
+      'Lp-life.cz',
+      'Woman.tiscali',
+      'Medium.seznam.cz'
+    ],
+  },
+  {
+    title: 'VI. Rozhlasové vysílání (soukromé, celoplošné a nadregionální)',
+    agencies: [
+      'Rádio Impuls',
+      'Evropa 2',
+      'Rádio Blaník',
+      'Frekvence 1',
+      'Rádio Kiss',
+      'Hitrádio',
+      'Radio Prostor'
+    ],
+  },
+  {
+    title: 'VII. Regionální a lokální zpravodajská média',
+    agencies: [
+      'Drbna síť',
+      'Krajské deníky VLM',
+      'Report.cz',
+      'NovinyVM',
+      'Velkomeziricsko',
+      'Brnan',
+      'Akceplzen',
+      'Art2Friends',
+      'Media24'
+    ],
+  },
+  {
+    title: 'VIII. Odborná a profesní mediální média',
+    agencies: [
+      'Médiář',
+      'MediaGuru.cz',
+      'Lupa.cz',
+      'MAM — Marketing a Media',
+      'Medialive'
+    ],
+  },
+  {
+    title: 'IX. Ideově a tematicky profilovaná publicistická média',
+    agencies: [
+      'ParlamentníListy.cz',
+      'Deník Alarm',
+      'Konzervativní noviny',
+      'Svobodný svět',
+      'Pravyprostor',
+      'Protiproud',
+      'Pravdivé.eu',
+      'Nezpravy.cz',
+      'Domacipolitika',
+      'Boldnews'
+    ],
+  },
+  {
+    title: 'X. Zahraniční mediální instituce a agentury',
+    agencies: [
+      'Associated Press (AP)',
+      'The Washington Post',
+      'Euronews',
+      'WRAL',
+      'Mankato Free Press',
+      'Arkansas Democrat-Gazette',
+      'Winnipeg Free Press',
+      'Morning Sun',
+      'TASR — Tlačová agentúra SR',
+      'WTX News',
+      'Expats.cz',
+      'Ground.news'
+    ],
+  },
+  {
+    title: 'XI. Mezinárodní instituce mediální regulace a profesní organizace',
+    agencies: [
+      'IPI — International Press Institute',
+      'RSF — Reporters Without Borders',
+      'EBU — European Broadcasting Union',
+      'EFJ — European Federation of Journalists',
+      'Evropská komise'
+    ],
+  },
+];
+---
+
+<section id="napsali-o-nas" class="press-about-us">
+  <div class="container">
+    <header class="press-about-us-header">
+      <p class="section-label">Napsali o nás</p>
+      <h2 class="section-title">Máme zahraniční dosah!</h2>
+      <p class="section-subtitle">
+        Náš hlas byl slyšet až ve Spojených státech, ale také na Slovensku, ve Spojeném království a dalších zemích v Evropě.
+      </p>
+    </header>
+
+    <h3 class="press-accordion-heading">Top média, která o nás napsala:</h3>
+
+    <dl class="press-accordion">
+      {accordionItems.map((item, index) => (
+        <div class="press-acc-item">
+          <dt>
+            <button
+              class="press-acc-btn"
+              aria-expanded="false"
+              aria-controls={`press-acc-${index}`}
+            >
+              <span>{item.title}</span>
+              <i class="fa-solid fa-plus press-acc-icon" aria-hidden="true"></i>
+            </button>
+          </dt>
+          <dd class="press-acc-body" id={`press-acc-${index}`} hidden>
+            <ul class="press-acc-list">
+              {item.agencies.map(agency => <li>{agency}</li>)}
+            </ul>
+          </dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="press-fight-block">
+      <h3 class="press-fight-title about-subheading">Varování: Svoboda médií je v sázce</h3>
+      <p class="press-fight-text">
+        Ohrožení nezávislosti veřejnoprávních médií vnímají i <a href="https://rsf.org/en/czechia-government-s-chaotic-reform-public-broadcasters-raises-alarm-rsf-and-partners-call-european" target="_blank" rel="noopener noreferrer">mezinárodní organizace</a>. Česká republika se nadále umisťuje na předních pozicích v žebříčku svobody médií mezi zeměmi z celého světa <a href="https://rsf.org/en/country-czechia" target="_blank" rel="noopener noreferrer">(10. místo celosvětově, RSF 2025)</a>. To se může rychle změnit. Mezinárodní organizace monitorující nezávislost médií v čele s International Press Institute vydaly dne 22.4. společné <a href="https://rsf.org/sites/default/files/medias/file/2026/04/Czechia_%20Public%20media%20funding%20bill%20raises%20concerns%20over%20compatibility%20with%20EMFA.pdf" target="_blank" rel="noopener noreferrer">prohlášení</a> , ve kterém varují před ohrožením nezávislosti mediálních institucí. Zmiňují v něm také, že ČT a ČRo jsou v Evropě uznávány, jako modelové příklady kvalitního veřejnoprávního vysílání. Upozorňují na to, že návrh zákona porušuje článek 5 Evropského aktu o svobodě médií, a vyzývají Evropskou komisi, aby návrh prověřila.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const accButtons = document.querySelectorAll<HTMLButtonElement>('.press-acc-btn');
+
+  accButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const bodyId = btn.getAttribute('aria-controls');
+      const body = bodyId ? document.getElementById(bodyId) : null;
+
+      // Close all other items
+      accButtons.forEach((other) => {
+        if (other !== btn) {
+          other.setAttribute('aria-expanded', 'false');
+          const otherId = other.getAttribute('aria-controls');
+          const otherBody = otherId ? document.getElementById(otherId) : null;
+          if (otherBody) otherBody.hidden = true;
+          const otherIcon = other.querySelector('.press-acc-icon');
+          if (otherIcon) {
+            otherIcon.classList.remove('fa-minus');
+            otherIcon.classList.add('fa-plus');
+          }
+        }
+      });
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (body) body.hidden = expanded;
+      const icon = btn.querySelector('.press-acc-icon');
+      if (icon) {
+        if (expanded) {
+          icon.classList.remove('fa-minus');
+          icon.classList.add('fa-plus');
+        } else {
+          icon.classList.remove('fa-plus');
+          icon.classList.add('fa-minus');
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .press-about-us {
+    padding: 5rem 0;
+    background: var(--color-bg-alt);
+  }
+
+  .press-about-us-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .press-accordion-heading {
+    max-width: 760px;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .press-accordion {
+    max-width: 760px;
+    margin-inline: auto;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .press-acc-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .press-acc-item:last-child {
+    border-bottom: none;
+  }
+
+  .press-acc-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: background 0.15s;
+  }
+
+  .press-acc-btn:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .press-acc-btn[aria-expanded='true'] {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-secondary);
+  }
+
+  .press-acc-icon {
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    color: var(--color-secondary);
+    width: 1.2em;
+    text-align: center;
+  }
+
+  .press-acc-body {
+    padding: 1rem 1.5rem 1.5rem;
+    background: var(--color-bg);
+  }
+
+  .press-acc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .press-acc-list li {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-text);
+    padding: 0.35rem 0.8rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-secondary);
+    border-radius: var(--radius);
+    line-height: 1.4;
+  }
+
+  .press-fight-block {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .press-fight-title {
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .press-fight-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text);
+  }
+
+  .press-fight-text a {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+
+  .press-fight-text a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+</style>
