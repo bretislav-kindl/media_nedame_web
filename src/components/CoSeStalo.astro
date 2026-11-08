@@ -1,0 +1,86 @@
+---
+// Stav zákona, časová osa a naše minulé akce
+import { ZAKON, CASOVA_OSA, AKCE, MINULE_AKCE } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+
+const VIDET = 6; // kolik událostí časové osy je vidět bez rozbalení
+const isoNaDatum = (iso: string) => {
+  const [y, m, d] = iso.split('-');
+  return `${Number(d)}. ${Number(m)}. ${y}`;
+};
+const pocet = (n: number) => `${n} ${n === 1 ? 'událost' : n >= 2 && n <= 4 ? 'události' : 'událostí'}`;
+---
+
+<section class="scene light cut rev" id="co-se-stalo">
+  <div class="wrap">
+    <Nadpis text="Co se stalo" />
+    <p class="sub fade">{ZAKON.uvod}</p>
+    <div class="law fade">
+      <ol>
+        {ZAKON.kroky.map((k) => (
+          <li class={k.stav}><i aria-hidden="true"></i><b>{k.nazev}</b><span>{k.detail}</span></li>
+        ))}
+      </ol>
+      <p class="note">{ZAKON.poznamka}</p>
+      <p class="src">{ZAKON.zdroj}</p>
+    </div>
+
+    <div class="tl-wrap">
+      <h3>Časová osa</h3>
+      <div>
+        <ol class="tl">
+          {AKCE.map((a) => (
+            <li class="ours" data-after={a.iso} hidden>
+              <div class="d">{isoNaDatum(a.iso)}<span class="tag">Naše akce</span></div>
+              <p>{a.timeline}</p>
+            </li>
+          ))}
+          {CASOVA_OSA.slice(0, VIDET).map((t) => (
+            <li class={t.nase ? 'ours' : ''}>
+              <div class="d">{t.datum}{t.nase && <span class="tag">Naše akce</span>}</div>
+              <p>{t.text}</p>
+            </li>
+          ))}
+        </ol>
+        <div class="xp" id="tl-more" aria-hidden="true">
+          <div>
+            <ol class="tl" style="padding-top:0">
+              {CASOVA_OSA.slice(VIDET).map((t) => (
+                <li class={t.nase ? 'ours' : ''}>
+                  <div class="d">{t.datum}{t.nase && <span class="tag">Naše akce</span>}</div>
+                  <p>{t.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+        <button class="more" type="button" data-x="free" aria-expanded="false" aria-controls="tl-more" id="tl-btn">
+          Celá časová osa ({pocet(CASOVA_OSA.length)})
+        </button>
+      </div>
+    </div>
+
+    <h3 style="font-size:clamp(34px,3.6vw,52px);margin-top:110px">Naše minulé akce</h3>
+    <div class="past">
+      {MINULE_AKCE.map((p, i) => (
+        <article class="card fade" data-xhost>
+          <div class="ph"><img src={`/img/${p.img}`} alt={`${p.title}, ${p.date}`} loading="lazy" /></div>
+          <div class="bd">
+            <span class="dt">{p.date}</span>
+            <h4>{p.title}</h4>
+            <div class="xp" id={`past-${i}`} aria-hidden="true">
+              <div>
+                <p>{p.text}</p>
+                <div class="links">
+                  {p.odkazy.map((o) => <a class="pdf" href={o.soubor} target="_blank" rel="noopener">{o.text}</a>)}
+                </div>
+                <p class="cr">{p.credit}</p>
+              </div>
+            </div>
+            <button class="more" type="button" data-x="past" aria-expanded="false" aria-controls={`past-${i}`}>Více o akci</button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

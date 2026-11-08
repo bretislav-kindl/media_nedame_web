@@ -1,198 +1,58 @@
 ---
-interface Props {
-  title?: string;
-  description?: string;
-}
+// Kostra stránky: hlavička HTML, písma, zrnitost obrazu, ukazatel postupu, intro.
+import '../styles/global.css';
 
-const {
-  title = 'Media nedame',
-  description = 'Stojíme za svobodou a nezávislostí českých médií. Přidejte se k nám.',
-} = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const site = 'https://medianedame.cz';
+const ogImage = `${site}/og-image.jpg`;
 ---
 
 <!doctype html>
 <html lang="cs">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href={`${site}/`} />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Média nedáme!" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${site}/`} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/png" href="/media_nedame_logo.png" />
-    <link rel="apple-touch-icon" href="/media_nedame_logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>{title}</title>
+
+    <link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/anton-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/img/hero-3-11-vaclavak-noc.jpg" as="image" />
   </head>
   <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="progress" aria-hidden="true"></div>
+    <!-- Intro „Za minutu dvanáct“: jen při první návštěvě v relaci, dá se přeskočit -->
+    <div class="intro" id="intro" aria-hidden="true">
+      <div class="sh t"></div>
+      <div class="sh b"></div>
+      <div class="tc" id="tc">11<b>:</b>57</div>
+      <div class="cap">Za minutu dvanáct</div>
+      <button class="skip" id="skip" type="button">Přeskočit intro</button>
+    </div>
     <slot />
+    <script src="../scripts/main.js"></script>
   </body>
 </html>
-
-<style is:global>
-  @font-face {
-    font-family: 'Black Han Sans';
-    src: url('/fonts/BlackHanSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  :root {
-    --color-primary: #7fff00;
-    --color-primary-dark: #5acc00;
-    --color-secondary: #ff00cc;
-    --color-secondary-light: #ff44dd;
-    --color-accent: #ff00cc;
-    --color-bg: #ffffff;
-    --color-bg-alt: #f5f5f5;
-    --color-bg-dark: #111111;
-    --color-text: #111111;
-    --color-text-light: #444444;
-    --color-text-muted: #777777;
-    --color-border: #e0e0e0;
-    --font-heading: 'Barlow Condensed', Impact, sans-serif;
-    --font-body: 'Barlow', system-ui, -apple-system, sans-serif;
-    --max-width: 1100px;
-    --radius: 8px;
-    --shadow: 0 2px 16px rgba(26, 26, 46, 0.1);
-    --shadow-lg: 0 8px 40px rgba(26, 26, 46, 0.15);
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: var(--font-body);
-    color: var(--color-text);
-    background: var(--color-bg);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    line-height: 1.2;
-    font-weight: 700;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .container {
-    width: 100%;
-    max-width: var(--max-width);
-    margin-inline: auto;
-    padding-inline: 1.5rem;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    border-radius: var(--radius);
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-    text-align: center;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-  }
-
-  .btn-primary {
-    background: var(--color-primary);
-    color: #111111;
-  }
-
-  .btn-primary:hover {
-    background: var(--color-primary-dark);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
-  }
-
-  .btn-secondary:hover {
-    background: var(--color-secondary);
-    color: #fff;
-  }
-
-  .btn-outline-white {
-    background: transparent;
-    color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.7);
-  }
-
-  .btn-outline-white:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #fff;
-  }
-
-  section {
-    padding-block: 5rem;
-  }
-
-  .section-label {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    max-width: 60ch;
-    margin-inline: auto;
-  }
-
-  @media (max-width: 768px) {
-    section {
-      padding-block: 3.5rem;
-    }
-  }
-</style>

@@ -1,29 +1,39 @@
 ---
+// Celá stránka: pořadí sekcí shora dolů
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import PressAboutUs from '../components/PressAboutUs.astro';
-import Reasons from '../components/Reasons.astro';
-import ProtestSchools from '../components/ProtestSchools.astro';
-import FAQ from '../components/FAQ.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import Navigace from '../components/Navigace.astro';
+import Uvod from '../components/Uvod.astro';
+import ONas from '../components/ONas.astro';
+import Mezihra from '../components/Mezihra.astro';
+import Akce from '../components/Akce.astro';
+import Zapojit from '../components/Zapojit.astro';
+import CoSeStalo from '../components/CoSeStalo.astro';
+import Argumenty from '../components/Argumenty.astro';
+import Data from '../components/Data.astro';
+import Pozadujeme from '../components/Pozadujeme.astro';
+import Otazky from '../components/Otazky.astro';
+import Kontakt from '../components/Kontakt.astro';
+import Paticka from '../components/Paticka.astro';
 ---
 
 <Layout
-  title="Média nedáme! Stojíme za svobodnými médii!"
-  description="Přidejte se k tisícům lidí, kteří stojí za svobodou a nezávislostí českých médií. Podepište výzvu a pomozte chránit demokratické hodnoty."
+  title="Média nedáme! Studentská iniciativa za veřejnoprávní média"
+  description="Vláda chce zrušit poplatky a platit Českou televizi a Český rozhlas ze státního rozpočtu. Studentská iniciativa Média nedáme! hájí nezávislost veřejnoprávních médií."
 >
-  <Header />
-  <main id="main-content">
-    <Hero />
-    <About />
-    <PressAboutUs />
-    <Reasons />
-    <ProtestSchools />
-    <FAQ />
-    <Contact />
+  <Navigace />
+  <main>
+    <Uvod />
+    <ONas />
+    <Mezihra klic="walkout" />
+    <Akce />
+    <Zapojit />
+    <CoSeStalo />
+    <Mezihra klic="skoly" />
+    <Argumenty />
+    <Data />
+    <Pozadujeme />
+    <Otazky />
+    <Kontakt />
   </main>
-  <Footer />
+  <Paticka />
 </Layout>

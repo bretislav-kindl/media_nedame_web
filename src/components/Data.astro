@@ -1,0 +1,29 @@
+---
+import { KLICOVA_DATA } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+---
+
+<section class="scene light cut" id="data">
+  <div class="wrap">
+    <div class="data-head">
+      <Nadpis text="Klíčová data" />
+      <button class="more" type="button" data-xall="data" data-open="Rozbalit vše" data-close="Sbalit vše" aria-pressed="false"><span>Rozbalit vše</span></button>
+    </div>
+    <div class="tiles">
+      {KLICOVA_DATA.map((d, i) => (
+        <div class="tile" data-xhost>
+          <button type="button" data-x="data" aria-expanded="false" aria-controls={`kd-${i}`}>
+            <span class="v">{d.hodnota}</span>
+            <span class="hint">Co to znamená</span>
+          </button>
+          <div class="xp" id={`kd-${i}`} aria-hidden="true">
+            <div><div>
+              <p>{d.vyznam}</p>
+              <p class="src">Zdroj: {d.zdroj}</p>
+            </div></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,129 @@
+---
+// Grafy u argumentů. Čísla se mění přímo tady.
+interface Props {
+  typ: 'budget' | 'split' | 'ria';
+  zdroj: string;
+}
+const { typ, zdroj } = Astro.props;
+
+const TITULKY = {
+  budget: 'ČT přijde asi o miliardu, rozhlas o 410 milionů ročně',
+  split: 'Z „úspory“ 1,4 miliardy je 1,15 miliardy škrt',
+  ria: 'Vládní analýza: úprava poplatků vychází lépe než jejich zrušení',
+};
+const LEGENDY: Record<string, [string, string][]> = {
+  budget: [['c-base', 'letos z poplatků'], ['c-acc', 'podle vládního návrhu']],
+  split: [],
+  ria: [['c-base', 'úprava poplatků'], ['c-acc', 'zrušení poplatků (vládní návrh)']],
+};
+const cislo = (x: number) => String(x).replace('.', ',');
+const f1 = (x: number) => x.toFixed(1);
+
+// Rozpočet ČT a ČRo (mld. Kč): letos vs. návrh
+const rozpocet = [
+  { nazev: 'Česká televize', letos: 6.73, navrh: 5.74 },
+  { nazev: 'Český rozhlas', letos: 2.48, navrh: 2.07 },
+];
+// Hodnocení RIA (body z 5): úprava vs. zrušení
+const ria = [
+  { nazev: 'Celkové hodnocení', uprava: [3.4, '3,40'], zruseni: [3.3, '3,30'] },
+  { nazev: 'Nezávislost médií', uprava: [4, '4'], zruseni: [2, '2'] },
+  { nazev: 'Dopad na státní rozpočet', uprava: [5, '5'], zruseni: [1, '1'] },
+] as const;
+
+const B = { x0: 150, w: 400, mx: 7 };
+const R = { x0: 210, w: 360 };
+const sw = (0.25 / 1.4) * 640;
+---
+
+<figure class="fig">
+  <figcaption class="fig-t">{TITULKY[typ]}</figcaption>
+
+  {typ === 'budget' && (
+    <svg class="chart" viewBox="0 0 640 250" role="img" aria-labelledby="ch-b-t">
+      <title id="ch-b-t">Rozpočet ČT a ČRo letos a podle vládního návrhu, v miliardách korun</title>
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((t) => {
+        const x = f1(B.x0 + (t / B.mx) * B.w);
+        return (
+          <>
+            <line class="c-grid" x1={x} x2={x} y1="20" y2="210" />
+            <text class="c-mut" x={x} y="232" text-anchor="middle">{t}</text>
+          </>
+        );
+      })}
+      {rozpocet.map((r, ri) => {
+        const y = 30 + ri * 95;
+        return (
+          <>
+            <text class="c-txt c-strong" x="0" y={y + 30}>{r.nazev}</text>
+            {[['letos', r.letos, 'c-base'], ['návrh', r.navrh, 'c-acc']].map(([lab, v, cls], i) => {
+              const yy = y + i * 34;
+              const bw = ((v as number) / B.mx) * B.w;
+              return (
+                <>
+                  <rect class={`${cls} bar`} x={B.x0} y={yy} width={f1(bw)} height="24" style={`--d:${(i * 0.15).toFixed(2)}s`} />
+                  <text class="c-txt" x={f1(B.x0 + bw + 8)} y={yy + 17}>{cislo(v as number)} <tspan class="c-mut">{lab}</tspan></text>
+                </>
+              );
+            })}
+          </>
+        );
+      })}
+      <text class="c-mut" x="640" y="248" text-anchor="end">mld. Kč ročně</text>
+    </svg>
+  )}
+
+  {typ === 'split' && (
+    <svg class="chart" viewBox="0 0 640 160" role="img" aria-labelledby="ch-s-t">
+      <title id="ch-s-t">Slibovaná úspora 1,4 mld. Kč: asi 0,25 mld. ušetřený výběr poplatků, asi 1,15 mld. škrt</title>
+      <rect class="c-base bar" x="0" y="40" width={f1(sw)} height="44" />
+      <rect class="c-acc bar" x={f1(sw + 3)} y="40" width={f1(640 - sw - 3)} height="44" style="--d:.2s" />
+      <text class="c-txt c-strong" x="0" y="26">asi 0,25 mld.</text>
+      <text class="c-txt c-strong" x="640" y="26" text-anchor="end">asi 1,15 mld.</text>
+      <text class="c-mut" x="0" y="108">ušetřený výběr</text>
+      <text class="c-mut" x="0" y="126">poplatků</text>
+      <text class="c-mut" x="640" y="108" text-anchor="end">škrt v rozpočtu ČT a ČRo</text>
+      <text class="c-mut" x="640" y="154" text-anchor="end">slibovaná úspora celkem 1,4 mld. Kč ročně</text>
+    </svg>
+  )}
+
+  {typ === 'ria' && (
+    <svg class="chart" viewBox="0 0 640 300" role="img" aria-labelledby="ch-r-t">
+      <title id="ch-r-t">Hodnocení variant ve vládní analýze RIA, body z 5</title>
+      {[0, 1, 2, 3, 4, 5].map((t) => {
+        const x = f1(R.x0 + (t / 5) * R.w);
+        return (
+          <>
+            <line class="c-grid" x1={x} x2={x} y1="20" y2="262" />
+            <text class="c-mut" x={x} y="282" text-anchor="middle">{t}</text>
+          </>
+        );
+      })}
+      {ria.map((r, ri) => {
+        const y = 28 + ri * 80;
+        return (
+          <>
+            <text class="c-txt c-strong" x="0" y={y + 26}>{r.nazev}</text>
+            {[[r.uprava, 'c-base'], [r.zruseni, 'c-acc']].map(([[v, lab], cls], i) => {
+              const yy = y + i * 28;
+              const bw = ((v as number) / 5) * R.w;
+              return (
+                <>
+                  <rect class={`${cls} bar`} x={R.x0} y={yy} width={f1(bw)} height="20" style={`--d:${(i * 0.15).toFixed(2)}s`} />
+                  <text class="c-txt" x={f1(R.x0 + bw + 8)} y={yy + 15}>{lab}</text>
+                </>
+              );
+            })}
+          </>
+        );
+      })}
+    </svg>
+  )}
+
+  {LEGENDY[typ].length > 0 && (
+    <div class="legend">
+      {LEGENDY[typ].map(([c, t]) => <span class="lg"><i class={c}></i>{t}</span>)}
+    </div>
+  )}
+  <p class="src">{zdroj}</p>
+</figure>

@@ -1,0 +1,18 @@
+---
+import { OTAZKY } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+---
+
+<section class="scene cut" id="otazky">
+  <div class="wrap">
+    <Nadpis text="Časté otázky" />
+    <div class="faq fade">
+      {OTAZKY.map((q, i) => (
+        <div class="q" data-xhost>
+          <button type="button" data-x="faq" aria-expanded="false" aria-controls={`faq-${i}`}>{q.otazka}</button>
+          <div class="xp" id={`faq-${i}`} aria-hidden="true"><div><p>{q.odpoved}</p></div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

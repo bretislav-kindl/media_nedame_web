@@ -1,0 +1,26 @@
+---
+import { UVOD } from '../data/obsah';
+---
+
+<section class="hero" id="uvod">
+  <div class="bg"><img src={`/img/${UVOD.foto.soubor}`} alt={UVOD.foto.popis} fetchpriority="high" /></div>
+  <img class="boot" src="/otisk-boty.png" alt="" />
+  <div class="lb t"></div>
+  <div class="lb b"></div>
+  <span class="hero-cr">{UVOD.foto.autor}</span>
+  <div class="wrap">
+    <p class="kicker reveal-up">{UVOD.kicker}</p>
+    <h1>
+      <span class="ln"><span>{UVOD.title_1}</span></span>
+      <span class="ln"><span>{UVOD.title_2}</span></span>
+    </h1>
+    <div class="grid reveal-up">
+      <p class="lead">{UVOD.lead}</p>
+      <div class="status" role="note"><strong>Kde je zákon teď</strong>{UVOD.status}</div>
+    </div>
+    <div class="btns reveal-up">
+      {UVOD.buttons.map((b, i) => <a class={i === 0 ? 'btn primary' : 'btn'} href={b.href}>{b.text}</a>)}
+    </div>
+    <p class="call reveal-up">{UVOD.call}</p>
+  </div>
+</section>
