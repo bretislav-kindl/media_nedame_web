@@ -1,6 +1,6 @@
 # Média nedáme! – web medianedame.cz
 
-Web studentské iniciativy Média nedáme! (StRada FF UK). Postavený v [Astro](https://astro.build), Netlify ho po každé změně ve větvi `main` sám sestaví a zveřejní.
+Web studentské iniciativy Média nedáme! (StRada FF UK). Postavený v [Astro](https://astro.build), Netlify ho po každé změně ve větvi `main` sám sestaví a zveřejní (repozitář je veřejný, takže zveřejňuje změny od všech, kdo do něj mohou zapisovat).
 
 ## Kde co je
 
