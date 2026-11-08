@@ -1,0 +1,21 @@
+---
+import { ZAPOJIT } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+---
+
+<section class="scene red cut" id="zapojit-se">
+  <div class="wrap">
+    <Nadpis text={ZAPOJIT.title} />
+    <div class="join fade">
+      <div>
+        <p class="lead">{ZAPOJIT.lead}</p>
+        <p class="lead2">{ZAPOJIT.lead2}</p>
+      </div>
+      <div class="cta">
+        <h3>{ZAPOJIT.cta_title}</h3>
+        <p>{ZAPOJIT.cta_text}</p>
+        <a class="btn primary" href={ZAPOJIT.url} target="_blank" rel="noopener">{ZAPOJIT.button}</a>
+      </div>
+    </div>
+  </div>
+</section>

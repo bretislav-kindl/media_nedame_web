@@ -13,12 +13,38 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+# Dokumenty z původního webu: staré odkazy přesměrujeme na nové umístění
 [[redirects]]
-  from = "/favicon.ico"
-  to = "/media_nedame_logo.png"
-  status = 200
+  from = "/TZ_wake_up.pdf"
+  to = "/tiskove-zpravy/2026-06-11-vlado-wake-up.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/Prohl%C3%A1%C5%A1en%C3%AD%20M%C3%A9dia%20ned%C3%A1me!.pdf"
+  to = "/dokumenty/prohlaseni-media-nedame.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/Prohlášení Média nedáme!.pdf"
+  to = "/dokumenty/prohlaseni-media-nedame.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/tiskova-zprava.pdf"
+  to = "/#kontakt"
+  status = 301
+
+[[redirects]]
+  from = "/mapa+harmonogram.pdf"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/school_protests.xlsx"
+  to = "/"
+  status = 301
 
 [[redirects]]
   from = "/apple-touch-icon-precomposed.png"
-  to = "/media_nedame_logo.png"
+  to = "/apple-touch-icon.png"
   status = 200

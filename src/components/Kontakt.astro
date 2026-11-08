@@ -1,0 +1,28 @@
+---
+import { KONTAKTY, DOKUMENTY } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+---
+
+<section class="scene light cut rev" id="kontakt">
+  <div class="wrap">
+    <Nadpis text="Kontakt" />
+    <div class="contacts fade">
+      {KONTAKTY.map((k) => (
+        <div>
+          <div class="r">{k.role}</div>
+          <div class="nm">{k.jmeno}</div>
+          {k.telefon && <a href={`tel:${k.telefon.replace(/\s/g, '')}`}>{k.telefon}</a>}
+          <a href={`mailto:${k.email}`}>{k.email}</a>
+        </div>
+      ))}
+    </div>
+    <div class="press fade">
+      <h3>Pro novináře</h3>
+      <ul>
+        {DOKUMENTY.map((d) => (
+          <li><a class="pdf" href={d.soubor} target="_blank" rel="noopener">{d.nazev}<span>PDF</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

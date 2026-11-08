@@ -1,0 +1,12 @@
+---
+// Fotka přes celou šířku s „filmovými pruhy“ a paralaxou
+import { MEZIHRY } from '../data/obsah';
+const { klic } = Astro.props as { klic: keyof typeof MEZIHRY };
+const m = MEZIHRY[klic];
+---
+
+<figure class="interlude" aria-label={m.popis}>
+  <img src={`/img/${m.img}`} alt={m.popis} loading="lazy" />
+  <div class="bars" aria-hidden="true"></div>
+  <figcaption><span>{m.popis}</span><span>{m.autor}</span></figcaption>
+</figure>

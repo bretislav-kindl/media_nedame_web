@@ -1,0 +1,26 @@
+---
+import { POZADUJEME, PETICE, PETICE_URL, MEZIHRY } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+const foto = MEZIHRY.vlajka;
+---
+
+<section class="scene red cut rev" id="pozadujeme">
+  <div class="wrap">
+    <Nadpis text="Co požadujeme" />
+    <div class="demands">
+      <div>
+        <ol class="dl fade">
+          {POZADUJEME.map((p) => <li><div><b>{p.nadpis}</b><p>{p.text}</p></div></li>)}
+        </ol>
+        <div class="petition fade">
+          <div><b>{PETICE.nadpis}</b><p>{PETICE.text}</p></div>
+          <a class="btn" href={PETICE_URL} target="_blank" rel="noopener">{PETICE.tlacitko}</a>
+        </div>
+      </div>
+      <figure class="fade">
+        <img src={`/img/${foto.img}`} alt={foto.popis} loading="lazy" />
+        <figcaption>{foto.popis}. {foto.autor}</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

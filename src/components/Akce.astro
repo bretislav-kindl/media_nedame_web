@@ -1,0 +1,38 @@
+---
+// Nadcházející akce. Odpočet, skrytí po skončení dne a prázdný stav řeší skript podle data.
+import { AKCE, AKCE_ZADNA, INSTAGRAM_URL } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const program = `Brzy bude zveřejněn na <a class="jl" href="${INSTAGRAM_URL}" target="_blank" rel="noopener">našich sociálních sítích</a>.`;
+const prazdno = esc(AKCE_ZADNA).replace('@media.nedame', `<a class="jl" href="${INSTAGRAM_URL}" target="_blank" rel="noopener">@media.nedame</a>`);
+---
+
+<section class="scene" id="akce">
+  <div class="wrap">
+    <Nadpis text="Nadcházející akce" />
+    <div class="events">
+      {AKCE.map((a) => (
+        <article class="event fade" data-event={a.iso}>
+          <div class="date">
+            <span class="big">{a.big}</span>
+            <span class="cd" data-date={a.iso} data-time={a.time}></span>
+          </div>
+          <div class="info">
+            <h3>{a.title}</h3>
+            <p class="when">{a.date}</p>
+            <dl>
+              {a.rows.map((r) => (
+                <>
+                  <dt>{r.label}</dt>
+                  {r.value === '@program' ? <dd set:html={program} /> : <dd>{r.value}</dd>}
+                </>
+              ))}
+            </dl>
+          </div>
+        </article>
+      ))}
+      <p class="event-empty fade" hidden={AKCE.length > 0} set:html={prazdno} />
+    </div>
+  </div>
+</section>

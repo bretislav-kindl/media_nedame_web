@@ -1,0 +1,33 @@
+---
+import { ARGUMENTY } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+import Graf from './Graf.astro';
+---
+
+<section class="scene" id="argumenty">
+  <div class="wrap">
+    <Nadpis text="Proč je návrh špatně" />
+    <div class="args fade">
+      {ARGUMENTY.map((g, i) => (
+        <div class="arg" data-xhost>
+          <button type="button" data-x="args" aria-expanded="false" aria-controls={`arg-${i}`}>
+            <span class="n" aria-hidden="true">{i + 1}</span>
+            <span><span class="t">{g.title}</span><span class="s">{g.short}</span></span>
+            <span class="pm" aria-hidden="true"></span>
+          </button>
+          <div class="xp" id={`arg-${i}`} aria-hidden="true">
+            <div>
+              <div class={g.graf ? 'body' : 'body nofig'}>
+                <div class="tx">
+                  <p>{g.text}</p>
+                  <p class="src">{g.sources}</p>
+                </div>
+                {g.graf && <Graf typ={g.graf as 'budget' | 'split' | 'ria'} zdroj={g.zdrojGrafu!} />}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

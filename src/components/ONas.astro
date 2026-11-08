@@ -1,0 +1,14 @@
+---
+import { O_NAS } from '../data/obsah';
+import Nadpis from './Nadpis.astro';
+---
+
+<section class="scene light cut" id="o-nas">
+  <div class="wrap">
+    <Nadpis text="O iniciativě" />
+    <div class="about fade">
+      <blockquote>{O_NAS.citat}</blockquote>
+      <div class="txt">{O_NAS.odstavce.map((p) => <p>{p}</p>)}</div>
+    </div>
+  </div>
+</section>
