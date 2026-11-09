@@ -229,12 +229,12 @@ export const CASOVA_OSA = [
   },
   {
     "datum": "15. 6. 2026",
-    "text": "Vláda návrh schválila. happening Vládo, wake up!",
+    "text": "Vláda návrh schválila. Happening Vládo, wake up!",
     "nase": true
   },
   {
     "datum": "22. 4. 2026",
-    "text": "celostátní walkout, přes 220 škol a odhadem 20 000 studujících.",
+    "text": "Celostátní walkout, přes 220 škol a odhadem 20 000 studujících.",
     "nase": true
   },
   {

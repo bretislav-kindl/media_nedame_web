@@ -157,11 +157,15 @@ main>*:nth-child(1){z-index:1}main>*:nth-child(2){z-index:2}main>*:nth-child(3){
 .tl::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:2px;background:var(--lineL)}
 .tl::after{content:"";position:absolute;left:0;top:8px;width:2px;height:calc((100% - 16px) * var(--tp,0));background:var(--red)}
 .tl li{position:relative;padding:0 0 30px}
-.tl li::before{content:"";position:absolute;left:-34px;top:10px;width:14px;height:14px;background:var(--white);border:2px solid var(--black);transform:rotate(45deg)}
+.tl li::before{content:"";box-sizing:border-box;position:absolute;left:-36px;top:8px;width:18px;height:18px;background:var(--white);border:2px solid var(--black);transform:rotate(45deg)}
 .tl li.ours::before{background:var(--red);border-color:var(--red)}
 .tl .d{font-family:var(--disp);font-size:26px;line-height:1.2;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
 .tl .tag{font:600 13px var(--body);background:var(--red);color:var(--white);padding:2px 8px}
 .tl p{margin:4px 0 0;max-width:62ch}
+/* rozbalená část osy: místo vlevo, aby kosočtverce nebyly oříznuté, a souvislá čára */
+#tl-more>div{margin-left:-24px;padding-left:24px}
+.tl-wrap .tl:first-child::before{bottom:0}
+#tl-more .tl::before{top:0}
 .xp{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
 .xp.open{grid-template-rows:1fr}
 .xp>div{overflow:hidden;min-height:0}
