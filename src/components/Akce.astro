@@ -25,7 +25,13 @@ const prazdno = esc(AKCE_ZADNA).replace('@media.nedame', `<a class="jl" href="${
               {a.rows.map((r) => (
                 <>
                   <dt>{r.label}</dt>
-                  {r.value === '@program' ? <dd set:html={program} /> : <dd>{r.value}</dd>}
+                  {r.value === '@program' ? (
+                    <dd set:html={program} />
+                  ) : 'odkaz' in r && r.odkaz ? (
+                    <dd><a class="jl" href={r.odkaz} target="_blank" rel="noopener">{r.value}</a></dd>
+                  ) : (
+                    <dd>{r.value}</dd>
+                  )}
                 </>
               ))}
             </dl>

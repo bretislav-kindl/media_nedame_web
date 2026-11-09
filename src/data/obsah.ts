@@ -95,6 +95,8 @@ export const O_NAS = {
 //  • Když žádná akce nezbývá, ukáže se text AKCE_ZADNA.
 //  • V řádcích lze místo textu napsat "@program" – zobrazí se věta
 //    „Brzy bude zveřejněn na našich sociálních sítích.“ s odkazem.
+//  • Řádek může mít i "odkaz" (např. na PDF ve složce public/dokumenty):
+//    text z "value" se pak zobrazí jako odkaz, který se otevře v nové záložce.
 //  • Novou akci přidáte zkopírováním celého bloku { … } a úpravou údajů.
 //    Starou akci můžete po čase smazat; do časové osy ji pak dopište
 //    ručně do CASOVA_OSA (a fotku s popisem do MINULE_AKCE).
@@ -117,7 +119,8 @@ export const AKCE = [
       },
       {
         "label": "Program",
-        "value": "@program"
+        "value": "Program shromáždění (PDF)",
+        "odkaz": "/dokumenty/program-protestni-shromazdeni-2026-11-10.pdf"
       }
     ],
     "timeline": "Protestní shromáždění na náměstí Republiky."
